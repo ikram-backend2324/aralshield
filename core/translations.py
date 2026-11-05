@@ -103,10 +103,10 @@ T = {
         "en": "Breathe safely in the Aral region",
     },
     "hero_text": {
-        "qq": "Hár jılı qurǵaǵan Aral túbi — Aralqum — hawaǵa millionlaǵan tonna duz hám shań kóteredi. AralShield sputnik tiykarındaǵı atmosfera maǵlıwmatların, samal analizin hám puqaralar xabarların birlestirip, boran kelmesten aldın Qaraqalpaqstannıń hár bir rayonın eskertedi hám hár bir adamǵa óz densawlıǵı ushın jasalma intellekt másláhátin beredi.",
-        "uz": "Har yili qurigan Orol tubi — Orolqum — havoga millionlab tonna tuz va chang ko'taradi. AralShield sun'iy yo'ldosh asosidagi atmosfera ma'lumotlari, shamol tahlili va fuqarolar xabarlarini birlashtirib, bo'ron kelishidan oldin Qoraqalpog'istonning har bir tumanini ogohlantiradi va har bir insonga o'z sog'lig'i uchun sun'iy intellekt maslahatini beradi.",
-        "ru": "Каждый год высохшее дно Арала — Аралкум — поднимает в воздух миллионы тонн соли и пыли. AralShield объединяет спутниковые атмосферные данные, анализ ветра и сообщения жителей, чтобы предупредить каждый район Каракалпакстана до прихода бури, и даёт каждому человеку персональный совет ИИ для его здоровья.",
-        "en": "Every year the dried Aral seabed — the Aralkum — lifts millions of tonnes of salt and dust into the air. AralShield fuses satellite-based atmospheric data, wind analysis and citizen reports to warn every district of Karakalpakstan before the storm arrives, and gives each person AI advice for their own health.",
+        "qq": "Hár jılı qurǵaǵan Aral túbi — Aralqum — hawaǵa millionlaǵan tonna duz hám shań kóteredi. AralSafe sputnik tiykarındaǵı atmosfera maǵlıwmatların, samal analizin hám puqaralar xabarların birlestirip, boran kelmesten aldın Qaraqalpaqstannıń hár bir rayonın eskertedi hám hár bir adamǵa óz densawlıǵı ushın jasalma intellekt másláhátin beredi.",
+        "uz": "Har yili qurigan Orol tubi — Orolqum — havoga millionlab tonna tuz va chang ko'taradi. AralSafe sun'iy yo'ldosh asosidagi atmosfera ma'lumotlari, shamol tahlili va fuqarolar xabarlarini birlashtirib, bo'ron kelishidan oldin Qoraqalpog'istonning har bir tumanini ogohlantiradi va har bir insonga o'z sog'lig'i uchun sun'iy intellekt maslahatini beradi.",
+        "ru": "Каждый год высохшее дно Арала — Аралкум — поднимает в воздух миллионы тонн соли и пыли. AralSafe объединяет спутниковые атмосферные данные, анализ ветра и сообщения жителей, чтобы предупредить каждый район Каракалпакстана до прихода бури, и даёт каждому человеку персональный совет ИИ для его здоровья.",
+        "en": "Every year the dried Aral seabed — the Aralkum — lifts millions of tonnes of salt and dust into the air. AralSafe fuses satellite-based atmospheric data, wind analysis and citizen reports to warn every district of Karakalpakstan before the storm arrives, and gives each person AI advice for their own health.",
     },
     "cta_map": {"qq": "Tiri kartanı kóriw", "uz": "Jonli xaritani ko'rish", "ru": "Смотреть живую карту", "en": "See the live map"},
     "cta_app": {"qq": "Android qosımshasın júklew", "uz": "Android ilovasini yuklash", "ru": "Скачать для Android", "en": "Download for Android"},
@@ -196,7 +196,7 @@ T = {
     "alerts_on": {"qq": "Eskertiw qosıldı ✓", "uz": "Ogohlantirish yoqildi ✓", "ru": "Оповещения включены ✓", "en": "Alerts enabled ✓"},
 
     # ---------- assistant
-    "chat_title": {"qq": "AralShield JI járdemshisi", "uz": "AralShield AI yordamchisi", "ru": "ИИ-помощник AralShield", "en": "AralShield AI assistant"},
+    "chat_title": {"qq": "AralSafe JI járdemshisi", "uz": "AralSafe AI yordamchisi", "ru": "ИИ-помощник AralSafe", "en": "AralSafe AI assistant"},
     "chat_sub": {
         "qq": "Hawa sapası, shań boranı hám densawlıqtı qorǵaw haqqında sorań. Járdemshi házirgi tiri maǵlıwmatlardı biledi.",
         "uz": "Havo sifati, chang bo'roni va sog'liqni himoya qilish haqida so'rang. Yordamchi hozirgi jonli ma'lumotlarni biladi.",
@@ -263,7 +263,7 @@ T = {
     },
 
     # ---------- about
-    "about_title": {"qq": "AralShield haqqında", "uz": "AralShield haqida", "ru": "Об AralShield", "en": "About AralShield"},
+    "about_title": {"qq": "AralSafe haqqında", "uz": "AralSafe haqida", "ru": "Об AralSafe", "en": "About AralSafe"},
     "problem_title": {"qq": "Mashqala", "uz": "Muammo", "ru": "Проблема", "en": "The problem"},
     "problem_text": {
         "qq": "Aral teńiziniń qurıwı nátiyjesinde payda bolǵan Aralqum shólinen kóterilgen duz hám shań Qaraqalpaqstan xalqınıń densawlıǵına, awıl xojalıǵına hám turmısına tásir etedi. Biraq xalıq hám mákemeler boran haqqında aldın ala, anıq hám óz tilinde maǵlıwmat almaydı.",
@@ -273,10 +273,10 @@ T = {
     },
     "solution_title": {"qq": "Sheshim", "uz": "Yechim", "ru": "Решение", "en": "The solution"},
     "solution_text": {
-        "qq": "AralShield — veb-platforma hám Android qosımshası: 17 rayon ushın hár saatlıq tiri monitoring, 72 saatlıq boljaw, Aralqum algoritmi, puqara xabarları, jeke JI másláhátshi hám mákemeler paneli. Barlıǵı tórt tilde: qaraqalpaq, ózbek, orıs hám inglis.",
-        "uz": "AralShield — veb-platforma va Android ilovasi: 17 hudud uchun har soatlik jonli monitoring, 72 soatlik prognoz, Orolqum algoritmi, fuqaro xabarlari, shaxsiy AI maslahatchi va tashkilotlar paneli. Hammasi to'rt tilda: qoraqalpoq, o'zbek, rus va ingliz.",
-        "ru": "AralShield — веб-платформа и Android-приложение: ежечасный живой мониторинг 17 районов, прогноз на 72 часа, алгоритм «Аралкум», сообщения жителей, персональный ИИ-советник и панель для ведомств. Всё на четырёх языках: каракалпакском, узбекском, русском и английском.",
-        "en": "AralShield is a web platform and Android app: hourly live monitoring of 17 districts, a 72-hour forecast, the Aralkum algorithm, citizen reports, a personal AI adviser and an agency dashboard. All in four languages: Karakalpak, Uzbek, Russian and English.",
+        "qq": "AralSafe — veb-platforma hám Android qosımshası: 17 rayon ushın hár saatlıq tiri monitoring, 72 saatlıq boljaw, Aralqum algoritmi, puqara xabarları, jeke JI másláhátshi hám mákemeler paneli. Barlıǵı tórt tilde: qaraqalpaq, ózbek, orıs hám inglis.",
+        "uz": "AralSafe — veb-platforma va Android ilovasi: 17 hudud uchun har soatlik jonli monitoring, 72 soatlik prognoz, Orolqum algoritmi, fuqaro xabarlari, shaxsiy AI maslahatchi va tashkilotlar paneli. Hammasi to'rt tilda: qoraqalpoq, o'zbek, rus va ingliz.",
+        "ru": "AralSafe — веб-платформа и Android-приложение: ежечасный живой мониторинг 17 районов, прогноз на 72 часа, алгоритм «Аралкум», сообщения жителей, персональный ИИ-советник и панель для ведомств. Всё на четырёх языках: каракалпакском, узбекском, русском и английском.",
+        "en": "AralSafe is a web platform and Android app: hourly live monitoring of 17 districts, a 72-hour forecast, the Aralkum algorithm, citizen reports, a personal AI adviser and an agency dashboard. All in four languages: Karakalpak, Uzbek, Russian and English.",
     },
     "innovation_title": {"qq": "Nesi innovaciyalıq", "uz": "Nimasi innovatsion", "ru": "В чём инновация", "en": "What makes it innovative"},
     "innov1": {"qq": "Datchik satıp alıwdı talap etpeydi — sputnik-model maǵlıwmatları + puqaralar «tiri datchik» retinde.", "uz": "Datchik sotib olishni talab qilmaydi — sun'iy yo'ldosh-model ma'lumotlari + fuqarolar «tirik datchik» sifatida.", "ru": "Не требует закупки датчиков — спутниково-модельные данные + жители как «живые датчики».", "en": "No sensors to buy — satellite-model data plus residents as “living sensors”."},
@@ -305,16 +305,16 @@ T = {
 
     "global_title": {"qq": "Global keńeyiw", "uz": "Global kengayish", "ru": "Глобальное масштабирование", "en": "Global scaling"},
     "global_text": {
-        "qq": "BMSh Bas Assambleyası 2021-jılı Aralboyın «ekologiyalıq innovaciyalar hám texnologiyalar zonası» dep járiyaladı. Qurǵaǵan kóllerden kóterilgen shań — global mashqala: Urmiya (Iran), Solton-Si hám Ouens (AQSh), Chad kóli. AralShield motorı pútkil planetanı qamtıytuǵın Copernicus maǵlıwmatlarında isleydi — jańa regionǵa ótiw ushın tek qalalar dizimi hám «shań deregi sektorı» ózgertiledi, úskene kerek emes.",
-        "uz": "BMT Bosh Assambleyasi 2021-yilda Orolbo'yini «ekologik innovatsiyalar va texnologiyalar zonasi» deb e'lon qildi. Qurigan ko'llardan ko'tarilgan chang — global muammo: Urmiya (Eron), Salton-Si va Ouens (AQSh), Chad ko'li. AralShield dvigateli butun sayyorani qamrab oluvchi Copernicus ma'lumotlarida ishlaydi — yangi hududga o'tish uchun faqat shaharlar ro'yxati va «chang manbai sektori» o'zgartiriladi, uskuna kerak emas.",
-        "ru": "В 2021 году Генассамблея ООН объявила Приаралье «зоной экологических инноваций и технологий». Пыль с высыхающих озёр — глобальная проблема: Урмия (Иран), Солтон-Си и Оуэнс (США), озеро Чад. Движок AralShield работает на данных Copernicus, покрывающих всю планету: для нового региона меняются только список городов и «сектор источника пыли» — оборудование не нужно.",
-        "en": "In 2021 the UN General Assembly declared the Aral Sea region a “zone of ecological innovations and technologies”. Dust from drying lakes is a global problem: Lake Urmia (Iran), the Salton Sea and Owens Lake (USA), Lake Chad. The AralShield engine runs on Copernicus data that covers the whole planet — a new region only needs a list of cities and its “dust-source sector”, no hardware.",
+        "qq": "BMSh Bas Assambleyası 2021-jılı Aralboyın «ekologiyalıq innovaciyalar hám texnologiyalar zonası» dep járiyaladı. Qurǵaǵan kóllerden kóterilgen shań — global mashqala: Urmiya (Iran), Solton-Si hám Ouens (AQSh), Chad kóli. AralSafe motorı pútkil planetanı qamtıytuǵın Copernicus maǵlıwmatlarında isleydi — jańa regionǵa ótiw ushın tek qalalar dizimi hám «shań deregi sektorı» ózgertiledi, úskene kerek emes.",
+        "uz": "BMT Bosh Assambleyasi 2021-yilda Orolbo'yini «ekologik innovatsiyalar va texnologiyalar zonasi» deb e'lon qildi. Qurigan ko'llardan ko'tarilgan chang — global muammo: Urmiya (Eron), Salton-Si va Ouens (AQSh), Chad ko'li. AralSafe dvigateli butun sayyorani qamrab oluvchi Copernicus ma'lumotlarida ishlaydi — yangi hududga o'tish uchun faqat shaharlar ro'yxati va «chang manbai sektori» o'zgartiriladi, uskuna kerak emas.",
+        "ru": "В 2021 году Генассамблея ООН объявила Приаралье «зоной экологических инноваций и технологий». Пыль с высыхающих озёр — глобальная проблема: Урмия (Иран), Солтон-Си и Оуэнс (США), озеро Чад. Движок AralSafe работает на данных Copernicus, покрывающих всю планету: для нового региона меняются только список городов и «сектор источника пыли» — оборудование не нужно.",
+        "en": "In 2021 the UN General Assembly declared the Aral Sea region a “zone of ecological innovations and technologies”. Dust from drying lakes is a global problem: Lake Urmia (Iran), the Salton Sea and Owens Lake (USA), Lake Chad. The AralSafe engine runs on Copernicus data that covers the whole planet — a new region only needs a list of cities and its “dust-source sector”, no hardware.",
     },
     "global_slogan": {"qq": "Aralda tuwıldı — Jerdegi hár bir qurıp atırǵan kól ushın jaratıldı.", "uz": "Orolda tug'ildi — Yerdagi har bir qurib borayotgan ko'l uchun yaratildi.", "ru": "Рождён у Арала — создан для каждого высыхающего озера Земли.", "en": "Born at the Aral — built for every drying lake on Earth."},
     "global_path": {"qq": "Qaraqalpaqstan → Ózbekstan (Xorezm, Buxara, Nawayı) → Qızılorda → Orta Aziya → Iran, Jaqın Shıǵıs, AQSh", "uz": "Qoraqalpog'iston → O'zbekiston (Xorazm, Buxoro, Navoiy) → Qizilo'rda → Markaziy Osiyo → Eron, Yaqin Sharq, AQSh", "ru": "Каракалпакстан → Узбекистан (Хорезм, Бухара, Навои) → Кызылорда → Центральная Азия → Иран, Ближний Восток, США", "en": "Karakalpakstan → Uzbekistan (Khorezm, Bukhara, Navoi) → Kyzylorda → Central Asia → Iran, Middle East, USA"},
 
     # ---------- download
-    "dl_title": {"qq": "AralShield Android qosımshası", "uz": "AralShield Android ilovasi", "ru": "Приложение AralShield для Android", "en": "AralShield for Android"},
+    "dl_title": {"qq": "AralSafe Android qosımshası", "uz": "AralSafe Android ilovasi", "ru": "Приложение AralSafe для Android", "en": "AralSafe for Android"},
     "dl_text": {
         "qq": "Qosımsha rayonıńızdı hár 30 minutta tekseredi hám qáwip «Joqarı» dárejege jetkende eskertiw jiberedi — hátte qosımsha jabıq bolsa da.",
         "uz": "Ilova tumaningizni har 30 daqiqada tekshiradi va xavf «Yuqori» darajaga yetganda ogohlantirish yuboradi — hatto ilova yopiq bo'lsa ham.",
@@ -332,10 +332,10 @@ T = {
 
     # ---------- footer
     "footer": {
-        "qq": "AralShield · «Eń innovaciyalıq ideya» tańlawı ushın prototip · Ikram Xiyasov, Nókis",
-        "uz": "AralShield · «Eng innovatsion g'oya» tanlovi uchun prototip · Ikram Xiyasov, Nukus",
-        "ru": "AralShield · прототип для конкурса «Самая инновационная идея» · Икрам Хиясов, Нукус",
-        "en": "AralShield · prototype for the “Most Innovative Idea” contest · Ikram Xiyasov, Nukus",
+        "qq": "AralSafe · «Eń innovaciyalıq ideya» tańlawı ushın prototip · Ikram Xiyasov, Nókis",
+        "uz": "AralSafe · «Eng innovatsion g'oya» tanlovi uchun prototip · Ikram Xiyasov, Nukus",
+        "ru": "AralSafe · прототип для конкурса «Самая инновационная идея» · Икрам Хиясов, Нукус",
+        "en": "AralSafe · prototype for the “Most Innovative Idea” contest · Ikram Xiyasov, Nukus",
     },
     "disclaimer": {
         "qq": "Indeks modellik baha bolıp tabıladı hám rásmiy meteorologiyalıq eskertiwdi almastırmaydı.",

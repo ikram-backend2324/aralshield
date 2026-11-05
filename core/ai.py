@@ -10,7 +10,7 @@ log = logging.getLogger(__name__)
 URL = "https://openrouter.ai/api/v1/chat/completions"
 
 SYSTEM = (
-    "You are AralShield, an air-quality and health-protection assistant for the Republic of "
+    "You are AralSafe, an air-quality and health-protection assistant for the Republic of "
     "Karakalpakstan (Uzbekistan), where salt-dust storms blow from the Aralkum desert (the dried "
     "Aral Sea bed). You receive live hourly data and the Aral Dust Risk Index (ADRI, 0-100; "
     "<20 low, 20-40 moderate, 40-60 high, 60-80 very high, 80+ extreme). "
@@ -34,7 +34,9 @@ SCRIPT_RULES = {
            "mask = 'maska' (maska taǵıń); doctor = 'shıpaker'; ambulance = 'tez járdem (103)'; cough = 'jótel'; "
            "chest = 'kókirek'; children = 'balalar'; greeting 'Assalawma áleykum'; hour = 'saat' (never 'saǵat'); "
            "the index name is 'Aral shań qáwip indeksi (ADRI)' — never write it in English; "
-           "write district names exactly as given in the data."),
+           "write district names exactly as given in the data; next = 'keyingi' (never 'kelesi'); "
+           "elderly = 'jası úlkenler' (never 'qartlar'); storm = 'boran' (never 'dawıl'); avoid = 'saqlanıw'; "
+           "glass/window always 'áyna' (never 'áynek'); keep sentences short and simple."),
     "uz": "Write in Uzbek Latin script (o', g', sh, ch).",
     "ru": "",
     "en": "",
@@ -56,7 +58,7 @@ def _call(messages, max_tokens=500):
                 headers={
                     "Authorization": f"Bearer {settings.OPENROUTER_API_KEY}",
                     "HTTP-Referer": settings.SITE_URL,
-                    "X-Title": "AralShield",
+                    "X-Title": "AralSafe",
                     "Content-Type": "application/json",
                 },
                 json={"model": model, "messages": messages, "max_tokens": max_tokens, "temperature": 0.4},

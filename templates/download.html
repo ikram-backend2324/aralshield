@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% load static %}
-{% block title %}{{ t.nav_download }} — AralShield{% endblock %}
+{% block title %}{{ t.nav_download }} — AralSafe{% endblock %}
 {% block content %}
 <section>
   <div class="wrap grid2" style="align-items:center">
@@ -7,7 +7,7 @@
       <h1>📱 {{ t.dl_title }}</h1>
       <p class="lead muted" style="font-size:18px">{{ t.dl_text }}</p>
       {% if apk_ready %}
-        <a class="btn sand" href="{% static 'downloads/AralShield.apk' %}" download style="font-size:18px;padding:16px 26px">⬇ {{ t.dl_button }} ({{ apk_size }})</a>
+        <a class="btn sand" href="{% static 'downloads/AralSafe.apk' %}" download style="font-size:18px;padding:16px 26px">⬇ {{ t.dl_button }} ({{ apk_size }})</a>
       {% else %}
         <div class="banner sim">{{ t.dl_missing }}</div>
       {% endif %}

@@ -14,7 +14,7 @@ from .airdata import get_data, invalidate, level_for
 from .models import AdviceLog, CitizenReport, District
 from .translations import GROUPS, strings
 
-APK_PATH = Path(settings.BASE_DIR) / "static" / "downloads" / "AralShield.apk"
+APK_PATH = Path(settings.BASE_DIR) / "static" / "downloads" / "AralSafe.apk"
 
 
 # ------------------------------------------------------------------ helpers

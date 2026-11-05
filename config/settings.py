@@ -1,4 +1,4 @@
-"""AralShield — Django settings."""
+"""AralSafe — Django settings."""
 import mimetypes
 import os
 from pathlib import Path
@@ -98,7 +98,7 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
-# --- AralShield settings ---
+# --- AralSafe settings ---
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "google/gemini-2.5-flash")
 OPENROUTER_FALLBACK_MODELS = ["openai/gpt-4o-mini", "openrouter/auto"]

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token }}">
 <meta name="theme-color" content="#07131c">
-<title>{% block title %}AralShield — {{ t.brand_tag }}{% endblock %}</title>
+<title>{% block title %}AralSafe — {{ t.brand_tag }}{% endblock %}</title>
 <meta name="description" content="{{ t.brand_tag }}">
 <link rel="icon" href="{% static 'img/logo.svg' %}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
 <header class="top">
   <div class="wrap">
     <a class="logo" href="/">
-      <img src="{% static 'img/logo.svg' %}" alt="" width="32" height="32"> AralShield
+      <img src="{% static 'img/logo.svg' %}" alt="" width="32" height="32"> AralSafe
     </a>
     <button class="burger" aria-label="menu" onclick="document.querySelector('.nav').classList.toggle('open')">☰</button>
     <nav class="nav">
