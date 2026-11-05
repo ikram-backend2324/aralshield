@@ -26,7 +26,12 @@ SYSTEM = (
     "Current local date and time in Nukus: {now}. Use it for words like today/tomorrow."
 )
 SCRIPT_RULES = {
-    "qq": "Write in modern Karakalpak Latin alphabet (letters á, ó, ú, ı, ń, ǵ), not Uzbek and not Kazakh.",
+    "qq": ("Write in modern Karakalpak Latin alphabet (letters á, ó, ú, ı, ń, ǵ), not Uzbek and not Kazakh; "
+           "never use Uzbek spellings with o' or g'. Use these exact Karakalpak words: risk levels "
+           "'tómen', 'orta', 'joqarı', 'júdá joqarı', 'tótenshe' (never 'óte'); window = 'áyna' (áynalardı jabıń); "
+           "health = 'densawlıq' (one word); go outside = 'sırtqa shıǵıw'; be outside = 'sırtta bolıw'; "
+           "mask = 'maska' (maska taǵıń); doctor = 'shıpaker'; ambulance = 'tez járdem (103)'; cough = 'jótel'; "
+           "chest = 'kókirek'; children = 'balalar'; greeting 'Assalawma áleykum'."),
     "uz": "Write in Uzbek Latin script (o', g', sh, ch).",
     "ru": "",
     "en": "",
@@ -88,7 +93,7 @@ def describe_district(name, d):
     c = d.get("current") or {}
     p = d.get("peak") or {}
     return (
-        f"{name}: ADRI now {c.get('risk')} ({c.get('level')}), PM10 {c.get('pm10')} µg/m³, "
+        f"{name}: ADRI now {c.get('risk')} (level: {c.get('level')}), PM10 {c.get('pm10')} µg/m³, "
         f"PM2.5 {c.get('pm25')} µg/m³, dust {c.get('dust')} µg/m³, wind {c.get('wind')} m/s from "
         f"{c.get('wind_dir')}°{' (from Aralkum)' if c.get('from_aralkum') else ''}, humidity {c.get('rh')}%, "
         f"Aralkum salt-dust probability {c.get('salt')}%; 72h peak ADRI {p.get('risk')} at {p.get('time')}."
