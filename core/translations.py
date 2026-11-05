@@ -24,7 +24,7 @@ T = {
     "nav_report": {"qq": "Xabar beriw", "uz": "Xabar berish", "ru": "Сообщить", "en": "Report"},
     "nav_dashboard": {"qq": "Mákemeler paneli", "uz": "Tashkilotlar paneli", "ru": "Панель ведомств", "en": "Agency dashboard"},
     "nav_about": {"qq": "Joybar haqqında", "uz": "Loyiha haqida", "ru": "О проекте", "en": "About"},
-    "nav_download": {"qq": "Ilovanı júklew", "uz": "Ilovani yuklash", "ru": "Скачать приложение", "en": "Get the app"},
+    "nav_download": {"qq": "Qosımshanı júklew", "uz": "Ilovani yuklash", "ru": "Скачать приложение", "en": "Get the app"},
     "lang": {"qq": "Til", "uz": "Til", "ru": "Язык", "en": "Language"},
     "open": {"qq": "Ashıw", "uz": "Ochish", "ru": "Открыть", "en": "Open"},
     "back": {"qq": "Artqa", "uz": "Orqaga", "ru": "Назад", "en": "Back"},
@@ -67,12 +67,12 @@ T = {
     "lvl_moderate": {"qq": "Orta", "uz": "O'rtacha", "ru": "Умеренный", "en": "Moderate"},
     "lvl_high": {"qq": "Joqarı", "uz": "Yuqori", "ru": "Высокий", "en": "High"},
     "lvl_very_high": {"qq": "Júdá joqarı", "uz": "Juda yuqori", "ru": "Очень высокий", "en": "Very high"},
-    "lvl_extreme": {"qq": "Qáwipli", "uz": "Favqulodda", "ru": "Экстремальный", "en": "Extreme"},
+    "lvl_extreme": {"qq": "Tótenshe", "uz": "Favqulodda", "ru": "Экстремальный", "en": "Extreme"},
     "pm10": {"qq": "PM10 bólekshe", "uz": "PM10 zarracha", "ru": "Частицы PM10", "en": "PM10 particles"},
     "pm25": {"qq": "PM2.5 bólekshe", "uz": "PM2.5 zarracha", "ru": "Частицы PM2.5", "en": "PM2.5 particles"},
     "dust": {"qq": "Shań", "uz": "Chang", "ru": "Пыль", "en": "Dust"},
     "wind": {"qq": "Samal", "uz": "Shamol", "ru": "Ветер", "en": "Wind"},
-    "humidity": {"qq": "Ígallıq", "uz": "Namlik", "ru": "Влажность", "en": "Humidity"},
+    "humidity": {"qq": "Íǵallıq", "uz": "Namlik", "ru": "Влажность", "en": "Humidity"},
     "temp": {"qq": "Temperatura", "uz": "Harorat", "ru": "Температура", "en": "Temperature"},
     "aod": {"qq": "Aerozol qalıńlıǵı", "uz": "Aerozol qalinligi", "ru": "Аэрозольная толща", "en": "Aerosol depth"},
     "salt_prob": {
@@ -109,7 +109,7 @@ T = {
         "en": "Every year the dried Aral seabed — the Aralkum — lifts millions of tonnes of salt and dust into the air. AralShield fuses satellite-based atmospheric data, wind analysis and citizen reports to warn every district of Karakalpakstan before the storm arrives, and gives each person AI advice for their own health.",
     },
     "cta_map": {"qq": "Tiri kartanı kóriw", "uz": "Jonli xaritani ko'rish", "ru": "Смотреть живую карту", "en": "See the live map"},
-    "cta_app": {"qq": "Android ilovasın júklew", "uz": "Android ilovasini yuklash", "ru": "Скачать для Android", "en": "Download for Android"},
+    "cta_app": {"qq": "Android qosımshasın júklew", "uz": "Android ilovasini yuklash", "ru": "Скачать для Android", "en": "Download for Android"},
     "worst_now": {"qq": "Házir eń joqarı qáwip", "uz": "Hozir eng yuqori xavf", "ru": "Сейчас самый высокий риск", "en": "Highest risk right now"},
     "people_in_risk": {
         "qq": "Joqarı qáwip zonasındaǵı xalıq",
@@ -133,7 +133,7 @@ T = {
         "en": "Tap a district to open its forecast and personal advice.",
     },
     "how_title": {"qq": "Qalay isleydi", "uz": "Qanday ishlaydi", "ru": "Как это работает", "en": "How it works"},
-    "how1_t": {"qq": "Kósh mánbeli maǵlıwmat", "uz": "Ko'p manbali ma'lumot", "ru": "Данные из многих источников", "en": "Multi-source data"},
+    "how1_t": {"qq": "Kóp derekli maǵlıwmat", "uz": "Ko'p manbali ma'lumot", "ru": "Данные из многих источников", "en": "Multi-source data"},
     "how1_d": {
         "qq": "Copernicus CAMS sputnik-model maǵlıwmatları: PM10, PM2.5, shań, aerozol + samal baǵdarı, ıǵallıq — 17 rayon ushın hár saat.",
         "uz": "Copernicus CAMS sun'iy yo'ldosh-model ma'lumotlari: PM10, PM2.5, chang, aerozol + shamol yo'nalishi, namlik — 17 hudud uchun har soat.",
@@ -142,7 +142,7 @@ T = {
     },
     "how2_t": {"qq": "Aralqum algoritmi", "uz": "Orolqum algoritmi", "ru": "Алгоритм «Аралкум»", "en": "Aralkum algorithm"},
     "how2_d": {
-        "qq": "Samal Aralqum sektorınan (SB–S–SSh) esse hám rayon tenizge jaqın bolsa, duzlı shań qáwpi kúsheyedi. Nátiyje — 0–100 indeks.",
+        "qq": "Samal Aralqum sektorınan (AB–A–ASh) esse hám rayon teńizge jaqın bolsa, duzlı shań qáwpi kúsheyedi. Nátiyje — 0–100 indeks.",
         "uz": "Shamol Orolqum sektoridan (ShG'–Sh–ShSh) essa va tuman dengizga yaqin bo'lsa, tuzli chang xavfi kuchayadi. Natija — 0–100 indeks.",
         "ru": "Если ветер дует из сектора Аралкума (СЗ–С–СВ) и район близко к бывшему морю, риск солевой пыли растёт. Итог — индекс 0–100.",
         "en": "When wind blows from the Aralkum sector (NW–N–NE) and a district is close to the former sea, salt-dust risk rises. Result: a 0–100 index.",
@@ -156,7 +156,7 @@ T = {
     },
     "how4_t": {"qq": "Jeke JI másláhát", "uz": "Shaxsiy AI maslahat", "ru": "Личный совет ИИ", "en": "Personal AI advice"},
     "how4_d": {
-        "qq": "Astma, bala, ǵarrı, júkli hayal yamasa sırtta isleytuǵın adam — hár birine óz tilinde anıq háreket rejesi.",
+        "qq": "Astma, bala, jası úlken adam, júkli hayal yamasa sırtta isleytuǵın adam — hár birine óz tilinde anıq háreket rejesi.",
         "uz": "Astma, bola, keksa, homilador ayol yoki ochiq havoda ishlovchi — har biriga o'z tilida aniq harakat rejasi.",
         "ru": "Астма, ребёнок, пожилой человек, беременность или работа на улице — каждому свой план действий на родном языке.",
         "en": "Asthma, child, elderly, pregnancy or outdoor work — everyone gets a concrete action plan in their own language.",
@@ -164,7 +164,7 @@ T = {
     "all_districts": {"qq": "Barlıq rayonlar", "uz": "Barcha tumanlar", "ru": "Все районы", "en": "All districts"},
     "app_promo_t": {"qq": "Boran eskertiwi telefonıńızǵa", "uz": "Bo'ron ogohlantirishi telefoningizga", "ru": "Предупреждение о буре — на телефон", "en": "Storm alerts on your phone"},
     "app_promo_d": {
-        "qq": "Android ilovası rayonıńızdı fon rejiminde baqlaydı hám qáwip joqarılaǵanda bildiriw jiberedi.",
+        "qq": "Android qosımshası rayonıńızdı fon rejiminde baqlaydı hám qáwip joqarılaǵanda bildiriw jiberedi.",
         "uz": "Android ilovasi tumaningizni fon rejimida kuzatadi va xavf oshganda bildirishnoma yuboradi.",
         "ru": "Приложение для Android следит за вашим районом в фоне и присылает уведомление, когда риск растёт.",
         "en": "The Android app watches your district in the background and notifies you when the risk rises.",
@@ -184,7 +184,7 @@ T = {
     "grp_outdoor": {"qq": "Sırtta isleytuǵın (diyqan, qurılısshı)", "uz": "Ochiq havoda ishlovchi (dehqon, quruvchi)", "ru": "Работа на улице (фермер, строитель)", "en": "Outdoor worker (farmer, builder)"},
     "get_advice": {"qq": "Másláhát alıw", "uz": "Maslahat olish", "ru": "Получить совет", "en": "Get advice"},
     "advice_note": {
-        "qq": "Bul shıpakerdiń másláhátın almastırmaydı. Awır belgilerde 103 ge qońıraw etiń.",
+        "qq": "Bul shıpakerdiń másláhátın almastırmaydı. Awır belgilerde 103 ke qońıraw etiń.",
         "uz": "Bu shifokor maslahatining o'rnini bosmaydi. Og'ir belgilarda 103 ga qo'ng'iroq qiling.",
         "ru": "Это не заменяет консультацию врача. При тяжёлых симптомах звоните 103.",
         "en": "This does not replace a doctor. For severe symptoms call 103.",
@@ -240,7 +240,7 @@ T = {
     # ---------- dashboard
     "dash_title": {"qq": "Mákemeler ushın operativ panel", "uz": "Tashkilotlar uchun operativ panel", "ru": "Оперативная панель для ведомств", "en": "Operational dashboard for agencies"},
     "dash_sub": {
-        "qq": "Hákimiyatlar, mektepler, emlewxanalar hám FVB ushın: hár rayon boyınsha házirgi qáwip hám usınılatuǵın ilajlar.",
+        "qq": "Hákimiyatlar, mektepler, emlewxanalar hám TJM ushın: hár rayon boyınsha házirgi qáwip hám usınılatuǵın ilajlar.",
         "uz": "Hokimliklar, maktablar, shifoxonalar va FVV uchun: har bir tuman bo'yicha joriy xavf va tavsiya etilgan choralar.",
         "ru": "Для хокимиятов, школ, больниц и МЧС: текущий риск по районам и рекомендуемые меры.",
         "en": "For local government, schools, clinics and emergency services: current risk by district and recommended actions.",
@@ -252,9 +252,9 @@ T = {
     "col_action": {"qq": "Mektep hám emlewxana ushın ilaj", "uz": "Maktab va shifoxona uchun chora", "ru": "Меры для школ и больниц", "en": "Action for schools & clinics"},
     "act_low": {"qq": "Ádettegi rejim", "uz": "Odatiy rejim", "ru": "Обычный режим", "en": "Normal regime"},
     "act_moderate": {"qq": "Sezimtal balalar ushın sırttaǵı sabaqlardı qısqartıw", "uz": "Sezgir bolalar uchun ochiq havodagi darslarni qisqartirish", "ru": "Сократить уличные занятия для чувствительных детей", "en": "Shorten outdoor lessons for sensitive children"},
-    "act_high": {"qq": "Dene tárbiyasın ishke kóshiriw, áynalardı jabıw", "uz": "Jismoniy tarbiyani ichkariga ko'chirish, derazalarni yopish", "ru": "Физкультуру — в зал, закрыть окна", "en": "Move PE indoors, keep windows closed"},
-    "act_very_high": {"qq": "Sırttaǵı ilajlardı biykar etiw, maskalar, emlewxanalardı tayarlaw", "uz": "Ochiq havodagi tadbirlarni bekor qilish, niqoblar, shifoxonalarni tayyorlash", "ru": "Отменить уличные мероприятия, маски, подготовить поликлиники", "en": "Cancel outdoor events, masks, prepare clinics"},
-    "act_extreme": {"qq": "Tótenshe rejim: úyde qalıw, 103 hám FVB tayarlıǵı", "uz": "Favqulodda rejim: uyda qolish, 103 va FVV tayyorgarligi", "ru": "Режим ЧС: оставаться дома, готовность 103 и МЧС", "en": "Emergency regime: stay indoors, ambulance & rescue on standby"},
+    "act_high": {"qq": "Dene tárbiyası sabaqların imarat ishine kóshiriw, áynalardı jabıw", "uz": "Jismoniy tarbiyani ichkariga ko'chirish, derazalarni yopish", "ru": "Физкультуру — в зал, закрыть окна", "en": "Move PE indoors, keep windows closed"},
+    "act_very_high": {"qq": "Sırttaǵı ilajlardı biykarlaw, maskalar, emlewxanalardı tayarlaw", "uz": "Ochiq havodagi tadbirlarni bekor qilish, niqoblar, shifoxonalarni tayyorlash", "ru": "Отменить уличные мероприятия, маски, подготовить поликлиники", "en": "Cancel outdoor events, masks, prepare clinics"},
+    "act_extreme": {"qq": "Tótenshe rejim: úyde qalıw, 103 hám TJM tayarlıǵı", "uz": "Favqulodda rejim: uyda qolish, 103 va FVV tayyorgarligi", "ru": "Режим ЧС: оставаться дома, готовность 103 и МЧС", "en": "Emergency regime: stay indoors, ambulance & rescue on standby"},
     "api_note": {
         "qq": "Barlıq maǵlıwmat ashıq API arqalı da qoljetimli",
         "uz": "Barcha ma'lumotlar ochiq API orqali ham mavjud",
@@ -273,7 +273,7 @@ T = {
     },
     "solution_title": {"qq": "Sheshim", "uz": "Yechim", "ru": "Решение", "en": "The solution"},
     "solution_text": {
-        "qq": "AralShield — veb-platforma hám Android ilovası: 17 rayon ushın hár saatlıq tiri monitoring, 72 saatlıq boljaw, Aralqum algoritmi, puqara xabarları, jeke JI másláhátshi hám mákemeler paneli. Barlıǵı tórt tilde: qaraqalpaq, ózbek, orıs hám inglis.",
+        "qq": "AralShield — veb-platforma hám Android qosımshası: 17 rayon ushın hár saatlıq tiri monitoring, 72 saatlıq boljaw, Aralqum algoritmi, puqara xabarları, jeke JI másláhátshi hám mákemeler paneli. Barlıǵı tórt tilde: qaraqalpaq, ózbek, orıs hám inglis.",
         "uz": "AralShield — veb-platforma va Android ilovasi: 17 hudud uchun har soatlik jonli monitoring, 72 soatlik prognoz, Orolqum algoritmi, fuqaro xabarlari, shaxsiy AI maslahatchi va tashkilotlar paneli. Hammasi to'rt tilda: qoraqalpoq, o'zbek, rus va ingliz.",
         "ru": "AralShield — веб-платформа и Android-приложение: ежечасный живой мониторинг 17 районов, прогноз на 72 часа, алгоритм «Аралкум», сообщения жителей, персональный ИИ-советник и панель для ведомств. Всё на четырёх языках: каракалпакском, узбекском, русском и английском.",
         "en": "AralShield is a web platform and Android app: hourly live monitoring of 17 districts, a 72-hour forecast, the Aralkum algorithm, citizen reports, a personal AI adviser and an agency dashboard. All in four languages: Karakalpak, Uzbek, Russian and English.",
@@ -285,7 +285,7 @@ T = {
     "innov4": {"qq": "Mektepler hám emlewxanalar ushın tayar ilajlar.", "uz": "Maktablar va shifoxonalar uchun tayyor choralar.", "ru": "Готовые меры для школ и больниц.", "en": "Ready-made action plans for schools and clinics."},
     "innov5": {"qq": "Telefonǵa fon rejiminde avtomatik eskertiw.", "uz": "Telefonga fon rejimida avtomatik ogohlantirish.", "ru": "Автоматические фоновые оповещения на телефон.", "en": "Automatic background alerts on your phone."},
     "impact_title": {"qq": "Kútiletuǵın nátiyje", "uz": "Kutilayotgan natija", "ru": "Ожидаемый эффект", "en": "Expected impact"},
-    "impact1": {"qq": "~2 mln xalıq ushın tegin erte eskertiw", "uz": "~2 mln aholi uchun bepul erta ogohlantirish", "ru": "Бесплатное раннее оповещение для ~2 млн жителей", "en": "Free early warning for ~2 million residents"},
+    "impact1": {"qq": "~2 mln xalıq ushın biypul erte eskertiw", "uz": "~2 mln aholi uchun bepul erta ogohlantirish", "ru": "Бесплатное раннее оповещение для ~2 млн жителей", "en": "Free early warning for ~2 million residents"},
     "impact2": {"qq": "Balalar hám astma nawqasları ushın qáwipti azaytıw", "uz": "Bolalar va astma bemorlari uchun xavfni kamaytirish", "ru": "Снижение риска для детей и людей с астмой", "en": "Lower exposure for children and people with asthma"},
     "impact3": {"qq": "Mákemeler ushın maǵlıwmatqa tiykarlanǵan qararlar", "uz": "Tashkilotlar uchun ma'lumotga asoslangan qarorlar", "ru": "Решения на основе данных для ведомств", "en": "Data-driven decisions for agencies"},
     "impact4": {"qq": "Ilimpazlar ushın ashıq maǵlıwmatlar bazası", "uz": "Olimlar uchun ochiq ma'lumotlar bazasi", "ru": "Открытая база данных для исследователей", "en": "An open dataset for researchers"},
@@ -314,9 +314,9 @@ T = {
     "global_path": {"qq": "Qaraqalpaqstan → Ózbekstan (Xorezm, Buxara, Nawayı) → Qızılorda → Orta Aziya → Iran, Jaqın Shıǵıs, AQSh", "uz": "Qoraqalpog'iston → O'zbekiston (Xorazm, Buxoro, Navoiy) → Qizilo'rda → Markaziy Osiyo → Eron, Yaqin Sharq, AQSh", "ru": "Каракалпакстан → Узбекистан (Хорезм, Бухара, Навои) → Кызылорда → Центральная Азия → Иран, Ближний Восток, США", "en": "Karakalpakstan → Uzbekistan (Khorezm, Bukhara, Navoi) → Kyzylorda → Central Asia → Iran, Middle East, USA"},
 
     # ---------- download
-    "dl_title": {"qq": "AralShield Android ilovası", "uz": "AralShield Android ilovasi", "ru": "Приложение AralShield для Android", "en": "AralShield for Android"},
+    "dl_title": {"qq": "AralShield Android qosımshası", "uz": "AralShield Android ilovasi", "ru": "Приложение AralShield для Android", "en": "AralShield for Android"},
     "dl_text": {
-        "qq": "Ilova rayonıńızdı hár 30 minutta tekseredi hám qáwip «Joqarı» dárejege jetkende eskertiw jiberedi — hátte ilova jabıq bolsa da.",
+        "qq": "Qosımsha rayonıńızdı hár 30 minutta tekseredi hám qáwip «Joqarı» dárejege jetkende eskertiw jiberedi — hátte qosımsha jabıq bolsa da.",
         "uz": "Ilova tumaningizni har 30 daqiqada tekshiradi va xavf «Yuqori» darajaga yetganda ogohlantirish yuboradi — hatto ilova yopiq bo'lsa ham.",
         "ru": "Приложение проверяет ваш район каждые 30 минут и присылает оповещение, когда риск достигает уровня «Высокий», — даже если приложение закрыто.",
         "en": "The app checks your district every 30 minutes and alerts you when the risk reaches “High” — even when the app is closed.",
@@ -325,9 +325,9 @@ T = {
     "dl_steps": {"qq": "Ornatıw", "uz": "O'rnatish", "ru": "Установка", "en": "How to install"},
     "dl_step1": {"qq": "Joqarıdaǵı túyme arqalı APK faylın júkleń.", "uz": "Yuqoridagi tugma orqali APK faylini yuklang.", "ru": "Скачайте APK кнопкой выше.", "en": "Download the APK with the button above."},
     "dl_step2": {"qq": "Faylǵa basıń. Soralsa, «Belgisiz derekten ornatıwǵa» ruqsat beriń.", "uz": "Faylni bosing. So'ralsa, «Noma'lum manbalardan o'rnatish»ga ruxsat bering.", "ru": "Откройте файл. Если попросит — разрешите «Установку из неизвестных источников».", "en": "Open the file. If asked, allow “Install unknown apps”."},
-    "dl_step3": {"qq": "Ilovanı ashıp, rayonıńızdı tańlań hám bildiriwlerge ruqsat beriń.", "uz": "Ilovani ochib, tumaningizni tanlang va bildirishnomalarga ruxsat bering.", "ru": "Откройте приложение, выберите район и разрешите уведомления.", "en": "Open the app, pick your district and allow notifications."},
+    "dl_step3": {"qq": "Qosımshanı ashıp, rayonıńızdı tańlań hám bildiriwlerge ruqsat beriń.", "uz": "Ilovani ochib, tumaningizni tanlang va bildirishnomalarga ruxsat bering.", "ru": "Откройте приложение, выберите район и разрешите уведомления.", "en": "Open the app, pick your district and allow notifications."},
     "dl_qr": {"qq": "Telefon kamerası menen skanerlań", "uz": "Telefon kamerasi bilan skanerlang", "ru": "Отсканируйте камерой телефона", "en": "Scan with your phone camera"},
-    "dl_req": {"qq": "Talap: Android 8.0 hám joqarı · 1 MB den kem", "uz": "Talab: Android 8.0 va yuqori · 1 MB dan kam", "ru": "Требуется Android 8.0+ · меньше 1 МБ", "en": "Requires Android 8.0+ · under 1 MB"},
+    "dl_req": {"qq": "Talap: Android 8.0 hám joqarı · 1 MB-tan kem", "uz": "Talab: Android 8.0 va yuqori · 1 MB dan kam", "ru": "Требуется Android 8.0+ · меньше 1 МБ", "en": "Requires Android 8.0+ · under 1 MB"},
     "dl_missing": {"qq": "APK házirshe júklenbegen — tez arada.", "uz": "APK hozircha yuklanmagan — tez orada.", "ru": "APK ещё не загружен — скоро.", "en": "APK not uploaded yet — coming soon."},
 
     # ---------- footer
@@ -354,7 +354,7 @@ LEVEL_ADVICE = {
         "en": "Air is normal. Walking and exercise outdoors are safe. You can air out your home.",
     },
     "moderate": {
-        "qq": "Shań bar. Uzaq waqıt sırtta awır jumıs islewdi azaytıń, kóp suw iship turıń, úyge kirgende júzińizdi juwıń.",
+        "qq": "Hawada shań bar. Sırtta uzaq waqıt awır jumıs islewdi azaytıń, kóp suw ishiń, úyge kirgende júzińizdi juwıń.",
         "uz": "Chang bor. Uzoq vaqt tashqarida og'ir ish qilishni kamaytiring, ko'p suv iching, uyga kirganda yuzingizni yuving.",
         "ru": "Есть пыль. Сократите длительные тяжёлые нагрузки на улице, пейте больше воды, умывайтесь, придя домой.",
         "en": "Some dust. Cut down long, heavy exertion outdoors, drink plenty of water, wash your face when you come home.",
@@ -382,7 +382,7 @@ LEVEL_ADVICE = {
 GROUP_ADVICE = {
     "general": {"qq": "", "uz": "", "ru": "", "en": ""},
     "child": {
-        "qq": "Balalar: sırttaǵı oyındı qısqartıń, mektepke barıwda maska taqtırıń, kóp suw beriń.",
+        "qq": "Balalar: sırttaǵı oyındı qısqartıń, mektepke barǵanda maska kiygiziń, kóp suw beriń.",
         "uz": "Bolalar: tashqaridagi o'yinni qisqartiring, maktabga borishda niqob taqtiring, ko'p suv bering.",
         "ru": "Дети: сократите игры на улице, по дороге в школу — маска, давайте больше воды.",
         "en": "Children: shorten outdoor play, use a mask on the way to school, give plenty of water.",
