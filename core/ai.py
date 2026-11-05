@@ -18,7 +18,12 @@ SYSTEM = (
     "unless asked for more), use simple bullet points when listing actions. Base statements about "
     "current conditions strictly on the data provided; if data is missing, say so. Never diagnose "
     "disease or prescribe medication doses; for severe symptoms tell people to call 103 "
-    "(ambulance in Uzbekistan). Do not invent statistics."
+    "(ambulance in Uzbekistan). Do not invent statistics. "
+    "Match the strength of your advice to the risk level: at LOW risk say clearly that normal "
+    "activities are fine and give at most 1-2 light tips; only recommend masks, closed windows or "
+    "staying indoors when the level is HIGH or above (or when the forecast peak is). "
+    "Use plain text only: no markdown, no asterisks, no bold; start list lines with '• '. "
+    "Current local date and time in Nukus: {now}. Use it for words like today/tomorrow."
 )
 SCRIPT_RULES = {
     "qq": "Write in modern Karakalpak Latin alphabet (letters á, ó, ú, ı, ń, ǵ), not Uzbek and not Kazakh.",
@@ -56,7 +61,7 @@ def _call(messages, max_tokens=500):
             j = r.json()
             text = (j.get("choices") or [{}])[0].get("message", {}).get("content") or ""
             if text.strip():
-                return text.strip(), j.get("model", model)
+                return clean(text), j.get("model", model)
             last_err = f"{model}: empty answer"
         except Exception as exc:  # network etc.
             last_err = f"{model}: {exc}"
@@ -65,7 +70,18 @@ def _call(messages, max_tokens=500):
 
 
 def system_prompt(lang):
-    return SYSTEM.format(lang_name=LANG_NAMES_EN.get(lang, "English"), script_rule=SCRIPT_RULES.get(lang, ""))
+    from django.utils import timezone
+    now = timezone.localtime().strftime("%Y-%m-%d %H:%M (%A)")
+    return SYSTEM.format(lang_name=LANG_NAMES_EN.get(lang, "English"), script_rule=SCRIPT_RULES.get(lang, ""), now=now)
+
+
+def clean(text):
+    """Remove markdown the UI cannot render (bold, headings, '*' bullets)."""
+    import re
+    text = re.sub(r"\*\*(.+?)\*\*", r"\1", text)
+    text = re.sub(r"(?m)^\s*[\*\-]\s+", "• ", text)
+    text = re.sub(r"(?m)^#+\s*", "", text)
+    return text.replace("**", "").strip()
 
 
 def describe_district(name, d):
@@ -91,7 +107,8 @@ def personal_advice(district_text, level, group, lang):
     user = (
         f"Live data: {district_text}\nPerson profile: {group}.\n"
         "Give personal protection advice for the next 24 hours: 1 sentence on the situation, then "
-        "3-5 bullet actions specific to this profile, then 1 line on when to seek medical help."
+        "bullet actions specific to this profile (1-2 if risk is low, 3-5 if high or above), "
+        "then 1 line on when to seek medical help."
     )
     try:
         text, model = _call([
