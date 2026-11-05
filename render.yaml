@@ -1,15 +1,16 @@
 databases:
   - name: aralshield-db
+    region: oregon
     plan: free
     databaseName: aralshield
     user: aralshield
 
 services:
   - type: web
-    name: aralshield
+    name: aralshield-app
     runtime: python
     plan: free
-    region: frankfurt
+    region: oregon
     buildCommand: "./build.sh"
     startCommand: "./start.sh"
     healthCheckPath: /api/health/

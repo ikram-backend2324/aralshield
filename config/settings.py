@@ -95,7 +95,7 @@ if not DEBUG:
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "google/gemini-2.5-flash")
 OPENROUTER_FALLBACK_MODELS = ["openai/gpt-4o-mini", "openrouter/auto"]
-SITE_URL = os.environ.get("SITE_URL", "https://aralshield.onrender.com")
+SITE_URL = os.environ.get("SITE_URL", "https://aralshield-3xch.onrender.com")
 DATA_CACHE_SECONDS = int(os.environ.get("DATA_CACHE_SECONDS", "1800"))
 
 LOGGING = {
