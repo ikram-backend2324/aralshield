@@ -23,7 +23,8 @@ SYSTEM = (
     "activities are fine and give at most 1-2 light tips; only recommend masks, closed windows or "
     "staying indoors when the level is HIGH or above (or when the forecast peak is). "
     "Use plain text only: no markdown, no asterisks, no bold; start list lines with '• '. "
-    "Current local date and time in Nukus: {now}. Use it for words like today/tomorrow."
+    "Current local date and time in Nukus: {now}. Data times are local Nukus time; a time later on the "
+    "same date is 'today', not 'tomorrow'."
 )
 SCRIPT_RULES = {
     "qq": ("Write in modern Karakalpak Latin alphabet (letters á, ó, ú, ı, ń, ǵ), not Uzbek and not Kazakh; "
@@ -31,7 +32,8 @@ SCRIPT_RULES = {
            "'tómen', 'orta', 'joqarı', 'júdá joqarı', 'tótenshe' (never 'óte'); window = 'áyna' (áynalardı jabıń); "
            "health = 'densawlıq' (one word); go outside = 'sırtqa shıǵıw'; be outside = 'sırtta bolıw'; "
            "mask = 'maska' (maska taǵıń); doctor = 'shıpaker'; ambulance = 'tez járdem (103)'; cough = 'jótel'; "
-           "chest = 'kókirek'; children = 'balalar'; greeting 'Assalawma áleykum'."),
+           "chest = 'kókirek'; children = 'balalar'; greeting 'Assalawma áleykum'; hour = 'saat' (never 'saǵat'); "
+           "the index name is 'Aral shań qáwip indeksi (ADRI)' — never write it in English."),
     "uz": "Write in Uzbek Latin script (o', g', sh, ch).",
     "ru": "",
     "en": "",
