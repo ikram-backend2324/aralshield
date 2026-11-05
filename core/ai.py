@@ -81,7 +81,7 @@ def describe_district(name, d):
 
 def rule_advice(level, group, lang):
     base = LEVEL_ADVICE.get(level, LEVEL_ADVICE["moderate"])[lang]
-    extra = GROUP_ADVICE.get(group, GROUP_ADVICE["general"])[lang]
+    extra = "" if level == "low" else GROUP_ADVICE.get(group, GROUP_ADVICE["general"])[lang]
     return (base + ("\n\n" + extra if extra else "")).strip()
 
 

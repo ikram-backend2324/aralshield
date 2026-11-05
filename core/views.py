@@ -19,9 +19,9 @@ APK_PATH = Path(settings.BASE_DIR) / "static" / "downloads" / "AralShield.apk"
 
 # ------------------------------------------------------------------ helpers
 
-def _rows(lang):
+def _rows(lang, demo=False):
     """District list joined with live data, sorted by current risk (desc)."""
-    data = get_data()
+    data = get_data(demo=demo)
     since = timezone.now() - timedelta(hours=24)
     counts = dict(
         CitizenReport.objects.filter(created_at__gte=since)
@@ -70,7 +70,7 @@ def _context_text(data, lang):
 # ------------------------------------------------------------------ pages
 
 def home(request):
-    data, rows = _rows(request.lang)
+    data, rows = _rows(request.lang, request.demo)
     return render(request, "home.html", {
         "data": data, "rows": rows, "s": _summary(rows), "nav": "home",
         "map_json": json.dumps([
@@ -81,13 +81,13 @@ def home(request):
 
 
 def districts(request):
-    data, rows = _rows(request.lang)
+    data, rows = _rows(request.lang, request.demo)
     return render(request, "districts.html", {"data": data, "rows": rows, "nav": "districts"})
 
 
 def district_detail(request, slug):
     d = get_object_or_404(District, slug=slug)
-    data = get_data()
+    data = get_data(demo=request.demo)
     dd = data["districts"].get(slug)
     if not dd:
         raise Http404
@@ -145,7 +145,7 @@ def report(request):
 
 
 def dashboard(request):
-    data, rows = _rows(request.lang)
+    data, rows = _rows(request.lang, request.demo)
     t = strings(request.lang)
     for r in rows:
         r["action"] = t["act_" + r["level"]]
@@ -175,7 +175,7 @@ def _cors(resp):
 @require_GET
 def api_risk(request):
     lang = request.GET.get("lang", request.lang)
-    data, rows = _rows(lang)
+    data, rows = _rows(lang, request.GET.get("demo") == "1")
     only = request.GET.get("district")
     out = []
     for r in rows:
@@ -192,7 +192,7 @@ def api_risk(request):
             "peak_72h": r["peak"], "reports_24h": r["reports24"],
         })
     return _cors(JsonResponse({
-        "generated_at": data["generated_at"], "simulated": data["simulated"],
+        "generated_at": data["generated_at"], "simulated": data["simulated"], "demo": data.get("demo", False),
         "source": "Open-Meteo / Copernicus CAMS", "index": "Aral Dust Risk Index (0-100)",
         "districts": out,
     }, json_dumps_params={"ensure_ascii": False}))
@@ -201,7 +201,7 @@ def api_risk(request):
 @require_GET
 def api_district(request, slug):
     get_object_or_404(District, slug=slug)
-    data = get_data()
+    data = get_data(demo=request.GET.get("demo") == "1")
     return _cors(JsonResponse({"simulated": data["simulated"], **data["districts"][slug]}))
 
 
@@ -221,7 +221,7 @@ def api_advice(request):
         d = District.objects.get(slug=body.get("district"))
     except District.DoesNotExist:
         return JsonResponse({"error": "district"}, status=400)
-    data = get_data()
+    data = get_data(demo=request.demo)
     dd = data["districts"][d.slug]
     level = (dd.get("current") or {}).get("level", "moderate")
     text, model, fallback = ai.personal_advice(ai.describe_district(d.name_en, dd), level, group, lang)
@@ -236,7 +236,7 @@ def api_chat(request):
     history = body.get("messages") or []
     if not isinstance(history, list) or not history:
         return JsonResponse({"error": "empty"}, status=400)
-    data, rows = _rows(lang)
+    data, rows = _rows(lang, request.demo)
     question = str(history[-1].get("content", ""))[:1500]
     t = strings(lang)
     try:

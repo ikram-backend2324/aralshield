@@ -137,11 +137,11 @@ def _fetch_open_meteo(districts):
     return out
 
 
-def _simulate(districts):
-    """Deterministic, physically plausible simulation (used only when offline)."""
+def _simulate(districts, storm=False):
+    """Deterministic, physically plausible simulation (offline fallback, or the labelled storm demo)."""
     now = timezone.localtime().replace(minute=0, second=0, microsecond=0)
     start = now.replace(hour=0)
-    storm_day = (now.timetuple().tm_yday % 5) == 0
+    storm_day = storm or (now.timetuple().tm_yday % 5) == 0
     out = {}
     for k, d in enumerate(districts):
         prox = _clamp(1 - d.distance_to_aralkum_km / 400.0, 0.1, 1.0)
@@ -150,16 +150,24 @@ def _simulate(districts):
             t = start + timedelta(hours=h)
             diurnal = 0.5 + 0.5 * math.sin((t.hour - 9) / 24 * 2 * math.pi)
             wave = 0.5 + 0.5 * math.sin((h + k * 3) / 17.0)
-            wind = 2 + 7 * diurnal * wave + (5 if storm_day and 10 <= h <= 30 else 0)
-            wind_dir = (330 + 50 * math.sin((h + k) / 11.0)) % 360
-            dust = (20 + 260 * prox * wave * diurnal) * (1.8 if storm_day and 10 <= h <= 30 else 1)
+            if storm:
+                # storm front from the Aralkum peaking ~6 h from now
+                peak = (now - start).total_seconds() / 3600 + 6
+                g = math.exp(-((h - peak) / 9.0) ** 2)
+                wind = 3 + 11 * g + 2 * wave
+                wind_dir = (345 + 20 * math.sin((h + k) / 7.0)) % 360
+                dust = 15 + 420 * prox ** 1.8 * g + 25 * wave
+            else:
+                wind = 2 + 7 * diurnal * wave + (5 if storm_day and 10 <= h <= 30 else 0)
+                wind_dir = (330 + 50 * math.sin((h + k) / 11.0)) % 360
+                dust = (20 + 260 * prox * wave * diurnal) * (1.8 if storm_day and 10 <= h <= 30 else 1)
             pm10 = 25 + dust * 0.9 + 10 * wave
             rows.append({
                 "time": t.strftime("%Y-%m-%dT%H:00"),
                 "pm10": round(pm10, 1), "pm25": round(pm10 * 0.32, 1), "dust": round(dust, 1),
                 "aod": round(0.15 + dust / 900, 2), "aqi": None,
                 "wind": round(wind, 1), "wind_dir": round(wind_dir),
-                "rh": round(55 - 30 * diurnal), "temp": round(8 + 10 * diurnal, 1), "vis": None,
+                "rh": round(18 + 10 * wave) if storm else round(55 - 30 * diurnal), "temp": round(8 + 10 * diurnal, 1), "vis": None,
             })
         out[d.slug] = rows
     return out
@@ -173,10 +181,10 @@ def _report_boosts():
     return boosts
 
 
-def _enrich(raw, districts, simulated):
+def _enrich(raw, districts, simulated, demo=False):
     now_key = timezone.localtime().strftime("%Y-%m-%dT%H:00")
     boosts = _report_boosts()
-    result = {"generated_at": timezone.now().isoformat(), "simulated": simulated, "districts": {}}
+    result = {"generated_at": timezone.now().isoformat(), "simulated": simulated, "demo": demo, "districts": {}}
     for d in districts:
         rows = raw.get(d.slug, [])
         boost = boosts.get(d.slug, 0)
@@ -210,7 +218,15 @@ def _enrich(raw, districts, simulated):
     return result
 
 
-def get_data(force=False):
+def get_data(force=False, demo=False):
+    if demo:
+        cached = cache.get(CACHE_KEY + "_demo")
+        if cached and not force:
+            return cached
+        districts = list(District.objects.all())
+        data = _enrich(_simulate(districts, storm=True), districts, True, demo=True)
+        cache.set(CACHE_KEY + "_demo", data, 300)
+        return data
     if not force:
         cached = cache.get(CACHE_KEY)
         if cached:
@@ -243,3 +259,4 @@ def get_data(force=False):
 
 def invalidate():
     cache.delete(CACHE_KEY)
+    cache.delete(CACHE_KEY + "_demo")

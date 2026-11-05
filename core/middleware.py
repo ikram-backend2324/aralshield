@@ -19,6 +19,10 @@ class LanguageMiddleware:
                 hdr = (request.META.get("HTTP_ACCEPT_LANGUAGE") or "").lower()
                 lang = "ru" if hdr.startswith("ru") else ("uz" if hdr.startswith("uz") else DEFAULT_LANG)
         request.lang = lang
+        demo = request.GET.get("demo")
+        if demo in ("0", "1"):
+            request.session["demo"] = demo == "1"
+        request.demo = bool(request.session.get("demo", False))
         response = self.get_response(request)
         if chosen:
             response.set_cookie("aral_lang", chosen, max_age=3600 * 24 * 365, samesite="Lax")

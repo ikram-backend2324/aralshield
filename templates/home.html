@@ -36,7 +36,7 @@
   <div class="wrap">
     <h2>{{ t.map_title }}</h2>
     <p class="muted">{{ t.map_hint }}</p>
-    {% if data.simulated %}<div class="banner sim">⚠ {{ t.data_sim }}</div>{% else %}<div class="banner live"><span class="livedot"></span>{{ t.data_live }}</div>{% endif %}
+    {% if data.demo %}{% elif data.simulated %}<div class="banner sim">⚠ {{ t.data_sim }}</div>{% else %}<div class="banner live"><span class="livedot"></span>{{ t.data_live }}</div>{% endif %}
     <div class="maplayout">
       <div id="map"></div>
       <div class="dlist">

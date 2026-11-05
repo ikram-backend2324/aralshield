@@ -34,10 +34,11 @@
     </nav>
   </div>
 </header>
+{% if demo %}<div style="background:#8e2bd6;color:#fff;padding:10px 16px;text-align:center;font-weight:700;font-size:14px">🌪 {{ t.demo_on }} · <a href="?demo=0" style="color:#fff;text-decoration:underline">{{ t.demo_off }}</a></div>{% endif %}
 <main>{% block content %}{% endblock %}</main>
 <footer>
   <div class="wrap">
-    <div>{{ t.footer }}</div>
+    <div>{{ t.footer }} · {% if demo %}<a href="?demo=0">{{ t.demo_off }}</a>{% else %}<a href="?demo=1">🌪 {{ t.demo_link }}</a>{% endif %}</div>
     <div style="margin-top:6px">{{ t.disclaimer }} · Data: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> / Copernicus CAMS · Map © OpenStreetMap, CARTO</div>
   </div>
 </footer>

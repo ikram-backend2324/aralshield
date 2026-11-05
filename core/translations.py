@@ -46,6 +46,15 @@ T = {
         "en": "Note: data source unavailable right now — showing a simulation",
     },
 
+    "demo_on": {
+        "qq": "DEMO rejimi: Aralqumnan keletuǵın shań boranınıń simulyaciyası (haqıyqıy maǵlıwmat emes)",
+        "uz": "DEMO rejimi: Orolqumdan keladigan chang bo'roni simulyatsiyasi (haqiqiy ma'lumot emas)",
+        "ru": "ДЕМО-режим: симуляция пыльной бури с Аралкума (не реальные данные)",
+        "en": "DEMO mode: simulated Aralkum dust storm (not real data)",
+    },
+    "demo_off": {"qq": "Tiri maǵlıwmatqa qaytıw", "uz": "Jonli ma'lumotga qaytish", "ru": "Вернуться к живым данным", "en": "Back to live data"},
+    "demo_link": {"qq": "Boran demo", "uz": "Bo'ron demo", "ru": "Демо бури", "en": "Storm demo"},
+
     # ---------- risk vocabulary
     "risk_index": {
         "qq": "Aral shań qáwip indeksi",

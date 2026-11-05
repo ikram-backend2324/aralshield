@@ -10,7 +10,7 @@
         <span class="pill" style="background:{{ cur.color }}">{{ cur.level|lvl:t }}</span>
         {% if cur.from_aralkum %}<span class="pill" style="background:var(--sand)">🧂 {{ t.from_aralkum }}</span>{% endif %}
         <p class="muted" style="margin-top:12px">{{ t.risk_index }} · {{ t.updated }}: {{ cur.time|slice:"11:16" }}</p>
-        {% if data.simulated %}<div class="banner sim">⚠ {{ t.data_sim }}</div>{% endif %}
+        {% if data.demo %}{% elif data.simulated %}<div class="banner sim">⚠ {{ t.data_sim }}</div>{% endif %}
         {% if in_app %}
         <button class="btn sand" id="alertBtn" onclick="enableAlerts()">🔔 {{ t.enable_alerts }}</button>
         {% endif %}
