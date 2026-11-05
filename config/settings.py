@@ -1,4 +1,5 @@
 """AralShield — Django settings."""
+import mimetypes
 import os
 from pathlib import Path
 
@@ -81,6 +82,12 @@ STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
 }
+
+mimetypes.add_type("application/vnd.android.package-archive", ".apk")
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = [
+    "jpg", "jpeg", "png", "gif", "webp", "zip", "gz", "tgz", "bz2", "tbz", "xz", "br",
+    "woff", "woff2", "mp4", "webm", "apk",
+]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

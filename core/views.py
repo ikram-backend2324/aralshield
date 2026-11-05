@@ -160,7 +160,8 @@ def about(request):
 def download(request):
     return render(request, "download.html", {
         "nav": "download", "apk_ready": APK_PATH.exists(),
-        "apk_size": round(APK_PATH.stat().st_size / 1024 / 1024, 1) if APK_PATH.exists() else 0,
+        "apk_size": (f"{APK_PATH.stat().st_size / 1048576:.1f} MB" if APK_PATH.stat().st_size >= 1048576
+                     else f"{max(1, round(APK_PATH.stat().st_size / 1024))} KB") if APK_PATH.exists() else "",
         "site_url": request.build_absolute_uri("/download/"),
     })
 

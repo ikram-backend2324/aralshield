@@ -327,7 +327,7 @@ T = {
     "dl_step2": {"qq": "Faylǵa basıń. Soralsa, «Belgisiz derekten ornatıwǵa» ruqsat beriń.", "uz": "Faylni bosing. So'ralsa, «Noma'lum manbalardan o'rnatish»ga ruxsat bering.", "ru": "Откройте файл. Если попросит — разрешите «Установку из неизвестных источников».", "en": "Open the file. If asked, allow “Install unknown apps”."},
     "dl_step3": {"qq": "Ilovanı ashıp, rayonıńızdı tańlań hám bildiriwlerge ruqsat beriń.", "uz": "Ilovani ochib, tumaningizni tanlang va bildirishnomalarga ruxsat bering.", "ru": "Откройте приложение, выберите район и разрешите уведомления.", "en": "Open the app, pick your district and allow notifications."},
     "dl_qr": {"qq": "Telefon kamerası menen skanerlań", "uz": "Telefon kamerasi bilan skanerlang", "ru": "Отсканируйте камерой телефона", "en": "Scan with your phone camera"},
-    "dl_req": {"qq": "Talap: Android 8.0 hám joqarı · ~1 MB", "uz": "Talab: Android 8.0 va yuqori · ~1 MB", "ru": "Требуется Android 8.0+ · ~1 МБ", "en": "Requires Android 8.0+ · ~1 MB"},
+    "dl_req": {"qq": "Talap: Android 8.0 hám joqarı · 1 MB den kem", "uz": "Talab: Android 8.0 va yuqori · 1 MB dan kam", "ru": "Требуется Android 8.0+ · меньше 1 МБ", "en": "Requires Android 8.0+ · under 1 MB"},
     "dl_missing": {"qq": "APK házirshe júklenbegen — tez arada.", "uz": "APK hozircha yuklanmagan — tez orada.", "ru": "APK ещё не загружен — скоро.", "en": "APK not uploaded yet — coming soon."},
 
     # ---------- footer
