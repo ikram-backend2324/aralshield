@@ -62,7 +62,7 @@ def _context_text(data, lang):
     for d in District.objects.all():
         dd = data["districts"].get(d.slug)
         if dd:
-            parts.append(ai.describe_district(d.name_en, dd))
+            parts.append(ai.describe_district(d.name(lang), dd))
     note = " (SIMULATED DATA — source offline)" if data.get("simulated") else ""
     return f"Generated {data.get('generated_at')}{note}\n" + "\n".join(parts)
 
@@ -225,7 +225,7 @@ def api_advice(request):
     data = get_data(demo=request.demo)
     dd = data["districts"][d.slug]
     level = (dd.get("current") or {}).get("level", "moderate")
-    text, model, fallback = ai.personal_advice(ai.describe_district(d.name_en, dd), level, group, lang)
+    text, model, fallback = ai.personal_advice(ai.describe_district(d.name(lang), dd), level, group, lang)
     AdviceLog.objects.create(kind="advice", lang=lang, question=f"{d.slug}/{group}", answer=text, model_used=model)
     return JsonResponse({"answer": text, "model": model, "fallback": fallback})
 

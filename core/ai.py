@@ -33,7 +33,8 @@ SCRIPT_RULES = {
            "health = 'densawlıq' (one word); go outside = 'sırtqa shıǵıw'; be outside = 'sırtta bolıw'; "
            "mask = 'maska' (maska taǵıń); doctor = 'shıpaker'; ambulance = 'tez járdem (103)'; cough = 'jótel'; "
            "chest = 'kókirek'; children = 'balalar'; greeting 'Assalawma áleykum'; hour = 'saat' (never 'saǵat'); "
-           "the index name is 'Aral shań qáwip indeksi (ADRI)' — never write it in English."),
+           "the index name is 'Aral shań qáwip indeksi (ADRI)' — never write it in English; "
+           "write district names exactly as given in the data."),
     "uz": "Write in Uzbek Latin script (o', g', sh, ch).",
     "ru": "",
     "en": "",
