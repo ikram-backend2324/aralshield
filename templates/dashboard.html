@@ -1,0 +1,38 @@
+{% extends "base.html" %}{% load aral %}
+{% block title %}{{ t.nav_dashboard }} — AralShield{% endblock %}
+{% block content %}
+<section>
+  <div class="wrap">
+    <h1>🏛 {{ t.dash_title }}</h1>
+    <p class="muted">{{ t.dash_sub }}</p>
+    {% if data.simulated %}<div class="banner sim">⚠ {{ t.data_sim }}</div>{% else %}<div class="banner live"><span class="livedot"></span>{{ t.data_live }} · {{ t.updated }} {{ data.generated_at|slice:"11:16" }} UTC</div>{% endif %}
+    <div class="stats" style="margin-bottom:20px">
+      <div class="stat"><b>{{ s.n_total }}</b><span>{{ t.monitored }}</span></div>
+      <div class="stat"><b style="color:var(--high)">{{ s.n_high }}</b><span>{{ t.districts_high }}</span></div>
+      <div class="stat"><b>{{ s.people_high|thousands }}</b><span>{{ t.people_in_risk }}</span></div>
+      <div class="stat"><b>{{ s.max_peak }}</b><span>{{ t.peak72 }}</span></div>
+    </div>
+    <div class="card scroll-x">
+      <table class="tbl">
+        <thead><tr><th>#</th><th>{{ t.col_district }}</th><th>ADRI</th><th>{{ t.col_level }}</th><th>PM10</th><th>{{ t.salt_prob }}</th><th>{{ t.col_peak }}</th><th>{{ t.col_reports }}</th><th>{{ t.col_action }}</th></tr></thead>
+        <tbody>
+        {% for r in rows %}
+          <tr>
+            <td class="muted">{{ forloop.counter }}</td>
+            <td><a href="/district/{{ r.slug }}/"><b>{{ r.name }}</b></a></td>
+            <td><b style="font-family:Unbounded;color:{{ r.color }}">{{ r.risk }}</b></td>
+            <td><span class="pill" style="background:{{ r.color }}">{{ r.level|lvl:t }}</span></td>
+            <td>{{ r.cur.pm10|num }}</td>
+            <td>{{ r.cur.salt }}%</td>
+            <td><b style="color:{{ r.peak_color }}">{{ r.peak.risk }}</b> <span class="muted small">{{ r.peak.time|slice:"5:10" }} {{ r.peak.time|slice:"11:16" }}</span></td>
+            <td>{{ r.reports24 }}</td>
+            <td style="min-width:220px">{{ r.action }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small" style="margin-top:14px">{{ t.api_note }}: <a href="/api/risk/?lang={{ lang }}">/api/risk/</a> · <a href="/api/district/nukus/">/api/district/&lt;slug&gt;/</a></p>
+  </div>
+</section>
+{% endblock %}

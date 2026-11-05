@@ -1,0 +1,28 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}{{ t.nav_download }} — AralShield{% endblock %}
+{% block content %}
+<section>
+  <div class="wrap grid2" style="align-items:center">
+    <div>
+      <h1>📱 {{ t.dl_title }}</h1>
+      <p class="lead muted" style="font-size:18px">{{ t.dl_text }}</p>
+      {% if apk_ready %}
+        <a class="btn sand" href="{% static 'downloads/AralShield.apk' %}" download style="font-size:18px;padding:16px 26px">⬇ {{ t.dl_button }} ({{ apk_size }} MB)</a>
+      {% else %}
+        <div class="banner sim">{{ t.dl_missing }}</div>
+      {% endif %}
+      <p class="muted small" style="margin-top:10px">{{ t.dl_req }}</p>
+      <h3 style="margin-top:26px">{{ t.dl_steps }}</h3>
+      <ol class="steps"><li>{{ t.dl_step1 }}</li><li>{{ t.dl_step2 }}</li><li>{{ t.dl_step3 }}</li></ol>
+    </div>
+    <div style="text-align:center">
+      <div class="qr" id="qr"></div>
+      <p class="muted" style="margin-top:10px">{{ t.dl_qr }}</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>new QRCode(document.getElementById('qr'),{text:"{{ site_url|escapejs }}",width:200,height:200});</script>
+{% endblock %}

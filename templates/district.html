@@ -1,0 +1,119 @@
+{% extends "base.html" %}{% load aral %}
+{% block title %}{{ name }} — AralShield{% endblock %}
+{% block content %}
+<section>
+  <div class="wrap">
+    <a href="/districts/" class="small">← {{ t.all_districts }}</a>
+    <div class="grid2" style="align-items:center;margin-top:10px">
+      <div>
+        <h1 style="margin-bottom:8px">{{ name }}</h1>
+        <span class="pill" style="background:{{ cur.color }}">{{ cur.level|lvl:t }}</span>
+        {% if cur.from_aralkum %}<span class="pill" style="background:var(--sand)">🧂 {{ t.from_aralkum }}</span>{% endif %}
+        <p class="muted" style="margin-top:12px">{{ t.risk_index }} · {{ t.updated }}: {{ cur.time|slice:"11:16" }}</p>
+        {% if data.simulated %}<div class="banner sim">⚠ {{ t.data_sim }}</div>{% endif %}
+        {% if in_app %}
+        <button class="btn sand" id="alertBtn" onclick="enableAlerts()">🔔 {{ t.enable_alerts }}</button>
+        {% endif %}
+      </div>
+      <div class="gauge-card">
+        {% include "_gauge.html" with value=cur.risk color=cur.color %}
+        <div class="muted small" style="text-align:center">{{ t.peak72 }}: <b style="color:{{ peak.color }}">{{ peak.risk }}</b> · {{ peak.time|slice:"5:10" }} {{ peak.time|slice:"11:16" }}</div>
+      </div>
+    </div>
+
+    <div class="metrics" style="margin-top:22px">
+      <div class="metric"><span>{{ t.pm10 }}</span><b>{{ cur.pm10|num }}</b> <small>µg/m³</small></div>
+      <div class="metric"><span>{{ t.pm25 }}</span><b>{{ cur.pm25|num }}</b> <small>µg/m³</small></div>
+      <div class="metric"><span>{{ t.dust }}</span><b>{{ cur.dust|num }}</b> <small>µg/m³</small></div>
+      <div class="metric"><span>{{ t.salt_prob }}</span><b>{{ cur.salt }}%</b></div>
+      <div class="metric"><span>{{ t.wind }}</span><b>{{ cur.wind|num:1 }}</b> <small>m/s</small> <span class="windarrow" style="transform:rotate({{ cur.wind_dir|default:0 }}deg);display:inline-block">⬇</span> <small>{{ cur.wind_dir|num }}°</small></div>
+      <div class="metric"><span>{{ t.humidity }}</span><b>{{ cur.rh|num }}</b> <small>%</small></div>
+      <div class="metric"><span>{{ t.temp }}</span><b>{{ cur.temp|num:1 }}</b> <small>°C</small></div>
+      <div class="metric"><span>{{ t.aod }}</span><b>{{ cur.aod|num:2 }}</b></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap grid2">
+    <div class="card">
+      <h3>{{ t.forecast72 }}</h3>
+      <canvas id="chart" height="220"></canvas>
+    </div>
+    <div class="card">
+      <h3>{{ t.components }}</h3>
+      {% for label, v in parts %}
+      <div class="partrow"><span>{{ label }}</span><div class="bar"><i style="width:{{ v|pct:40 }}%"></i></div><b>{{ v|num:0 }}</b></div>
+      {% endfor %}
+      <p class="muted small" style="margin-top:12px">ADRI = PM10 (≤40) + PM2.5 (≤15) + {{ t.dust }} (≤20) + {{ t.part_wind }} (≤15) + {{ t.part_dry }} (≤5) + {{ t.part_reports }} (≤10)</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap grid2">
+    <div class="card">
+      <h3>🤖 {{ t.advice_title }}</h3>
+      <div class="muted small">{{ t.group_label }}</div>
+      <div class="chips" id="groups">
+        {% for g in groups %}<button class="chip {% if forloop.first %}on{% endif %}" data-g="{{ g }}">{% with k="grp_"|add:g %}{{ t|tget:k }}{% endwith %}</button>{% endfor %}
+      </div>
+      <button class="btn pri" id="adviceBtn">{{ t.get_advice }}</button>
+      <div class="answer" id="answer" style="margin-top:14px"></div>
+      <p class="muted small" style="margin-top:10px">{{ t.advice_note }}</p>
+    </div>
+    <div class="card">
+      <h3>{{ t.recent_reports }}</h3>
+      {% for r in reports %}
+        <div style="padding:8px 0;border-bottom:1px dashed var(--line)">
+          <b>{% with k="kind_"|add:r.kind %}{{ t|tget:k }}{% endwith %}</b> · {{ r.severity }}/5 <span class="muted small">· {{ r.created_at|date:"d.m H:i" }}</span>
+          {% if r.comment %}<div class="muted small">{{ r.comment }}</div>{% endif %}
+        </div>
+      {% empty %}<p class="muted">{{ t.no_reports }}</p>{% endfor %}
+      <a class="btn ghost" style="margin-top:14px" href="/report/?d={{ d.slug }}">📣 {{ t.nav_report }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const C = {{ chart_json|safe }};
+const lc = v => v<20?'#2fbf71':v<40?'#e3c34a':v<60?'#f08a24':v<80?'#e04b3c':'#8e2bd6';
+new Chart(document.getElementById('chart'),{
+  data:{labels:C.labels,datasets:[
+    {type:'bar',label:'ADRI',data:C.risk,backgroundColor:C.risk.map(lc),yAxisID:'y',borderRadius:2},
+    {type:'line',label:'PM10 µg/m³',data:C.pm10,borderColor:'#e8d3a8',pointRadius:0,tension:.3,yAxisID:'y2'},
+    {type:'line',label:'{{ t.wind|escapejs }} m/s',data:C.wind,borderColor:'#5fd8cc',borderDash:[4,4],pointRadius:0,tension:.3,yAxisID:'y3'}
+  ]},
+  options:{responsive:true,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:'#c6d5de'}}},
+    scales:{x:{ticks:{color:'#93a9b8',maxTicksLimit:9},grid:{color:'#1f3d55'}},
+      y:{min:0,max:100,ticks:{color:'#93a9b8'},grid:{color:'#1f3d55'},title:{display:true,text:'ADRI',color:'#93a9b8'}},
+      y2:{position:'right',ticks:{color:'#e8d3a8'},grid:{display:false}},
+      y3:{display:false,min:0}}}
+});
+let group='general';
+document.querySelectorAll('#groups .chip').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#groups .chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');group=b.dataset.g;});
+document.getElementById('adviceBtn').onclick=async()=>{
+  const btn=document.getElementById('adviceBtn'), out=document.getElementById('answer');
+  btn.disabled=true; out.textContent='{{ t.loading|escapejs }}';
+  try{
+    const j=await postJSON('/api/advice/',{district:'{{ d.slug }}',group,lang:ARAL.lang});
+    out.textContent=j.answer + (j.fallback?'\n\n— {{ t.ai_offline|escapejs }}':'');
+  }catch(e){out.textContent='{{ t.ai_error|escapejs }}';}
+  btn.disabled=false;
+};
+function enableAlerts(){
+  if(window.AralApp && AralApp.setDistrict){
+    AralApp.setDistrict('{{ d.slug }}','{{ name|escapejs }}');
+    const b=document.getElementById('alertBtn'); b.textContent='{{ t.alerts_on|escapejs }}'; b.disabled=true;
+  }
+}
+if(window.AralApp && AralApp.getDistrict && AralApp.getDistrict()==='{{ d.slug }}'){
+  const b=document.getElementById('alertBtn'); if(b){b.textContent='{{ t.alerts_on|escapejs }}';b.disabled=true;}
+}
+</script>
+{% endblock %}

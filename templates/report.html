@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ t.nav_report }} — AralShield{% endblock %}
+{% block content %}
+<section>
+  <div class="wrap grid2">
+    <div>
+      <h1>📣 {{ t.report_title }}</h1>
+      <p class="muted">{{ t.report_sub }}</p>
+      {% if sent %}<div class="banner ok">✓ {{ t.report_thanks }}</div>{% endif %}
+      {% if error %}<div class="banner err">{{ error }}</div>{% endif %}
+      <form method="post" class="card">
+        {% csrf_token %}
+        <label for="district">{{ t.f_district }}</label>
+        <select name="district" id="district" required>
+          {% for d in all %}<option value="{{ d.slug }}" {% if d.slug == preselect %}selected{% endif %}>{% if lang == 'qq' %}{{ d.name_qq }}{% elif lang == 'uz' %}{{ d.name_uz }}{% elif lang == 'ru' %}{{ d.name_ru }}{% else %}{{ d.name_en }}{% endif %}</option>{% endfor %}
+        </select>
+        <label>{{ t.f_kind }}</label>
+        <div class="kinds">
+          {% for code, label in kinds %}<label><input type="radio" name="kind" value="{{ code }}" {% if forloop.first %}checked{% endif %}> {{ label }}</label>{% endfor %}
+        </div>
+        <label for="severity">{{ t.f_severity }}: <b id="sevv">3</b></label>
+        <input type="range" name="severity" id="severity" min="1" max="5" value="3" oninput="document.getElementById('sevv').textContent=this.value">
+        <label for="comment">{{ t.f_comment }}</label>
+        <textarea name="comment" id="comment" maxlength="300"></textarea>
+        <button class="btn pri" type="submit" style="margin-top:16px">{{ t.submit }}</button>
+      </form>
+    </div>
+    <div>
+      <h2>{{ t.latest_reports }}</h2>
+      <div class="card">
+        {% for r in latest %}
+          <div style="padding:10px 0;border-bottom:1px dashed var(--line)">
+            <b>{% if lang == 'qq' %}{{ r.district.name_qq }}{% elif lang == 'uz' %}{{ r.district.name_uz }}{% elif lang == 'ru' %}{{ r.district.name_ru }}{% else %}{{ r.district.name_en }}{% endif %}</b>
+            · {% for code, label in kinds %}{% if code == r.kind %}{{ label }}{% endif %}{% endfor %} · {{ r.severity }}/5
+            <span class="muted small">· {{ r.created_at|date:"d.m H:i" }}</span>
+            {% if r.comment %}<div class="muted small">{{ r.comment }}</div>{% endif %}
+          </div>
+        {% empty %}<p class="muted" style="margin:0">{{ t.no_reports }}</p>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

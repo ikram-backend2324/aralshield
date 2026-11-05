@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ t.nav_about }} — AralShield{% endblock %}
+{% block content %}
+<section>
+  <div class="wrap">
+    <h1>{{ t.about_title }}</h1>
+    <div class="grid2" style="margin-top:20px">
+      <div class="card"><h2>🌪 {{ t.problem_title }}</h2><p>{{ t.problem_text }}</p></div>
+      <div class="card"><h2>🛡 {{ t.solution_title }}</h2><p>{{ t.solution_text }}</p></div>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card"><h2>💡 {{ t.innovation_title }}</h2>
+        <ul class="list"><li>{{ t.innov1 }}</li><li>{{ t.innov2 }}</li><li>{{ t.innov3 }}</li><li>{{ t.innov4 }}</li><li>{{ t.innov5 }}</li></ul>
+      </div>
+      <div class="card"><h2>📈 {{ t.impact_title }}</h2>
+        <ul class="list"><li>{{ t.impact1 }}</li><li>{{ t.impact2 }}</li><li>{{ t.impact3 }}</li><li>{{ t.impact4 }}</li></ul>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card"><h2>🗺 {{ t.roadmap_title }}</h2>
+        <ul class="list"><li>{{ t.road1 }}</li><li>{{ t.road2 }}</li><li>{{ t.road3 }}</li><li>{{ t.road4 }}</li></ul>
+      </div>
+      <div class="card"><h2>⚙ {{ t.tech_title }}</h2>
+        <div class="tags">
+          <span class="tag">Python · Django</span><span class="tag">PostgreSQL</span><span class="tag">OpenRouter AI</span>
+          <span class="tag">Copernicus CAMS / Open-Meteo</span><span class="tag">Leaflet · Chart.js</span>
+          <span class="tag">Android (Java)</span><span class="tag">REST API</span><span class="tag">Render cloud</span>
+        </div>
+        <h2 style="margin-top:22px">👤 {{ t.author_title }}</h2>
+        <p>{{ t.author_text }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

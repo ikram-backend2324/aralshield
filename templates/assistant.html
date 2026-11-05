@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ t.nav_assistant }} — AralShield{% endblock %}
+{% block content %}
+<section>
+  <div class="wrap" style="max-width:860px">
+    <h1>🤖 {{ t.chat_title }}</h1>
+    <p class="muted">{{ t.chat_sub }}</p>
+    {% if not ai_on %}<div class="banner sim">ℹ {{ t.ai_offline }}</div>{% endif %}
+    <div class="examples">
+      <button class="chip ex">{{ t.chat_ex1 }}</button>
+      <button class="chip ex">{{ t.chat_ex2 }}</button>
+      <button class="chip ex">{{ t.chat_ex3 }}</button>
+    </div>
+    <div class="chatbox">
+      <div class="msgs" id="msgs"></div>
+      <form class="chatform" id="chatform">
+        <input type="text" id="q" placeholder="{{ t.chat_placeholder }}" autocomplete="off" maxlength="1000">
+        <button class="btn pri" type="submit" id="sendBtn">{{ t.send }}</button>
+      </form>
+    </div>
+    <p class="muted small" style="margin-top:10px">{{ t.advice_note }}</p>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+const history=[]; const box=document.getElementById('msgs');
+function add(role,text,cls=''){const d=document.createElement('div');d.className='msg '+(role==='user'?'u':'a')+' '+cls;d.textContent=text;box.appendChild(d);box.scrollTop=box.scrollHeight;return d;}
+async function ask(q){
+  q=q.trim(); if(!q) return;
+  add('user',q); history.push({role:'user',content:q});
+  const t=add('assistant','{{ t.loading|escapejs }}','typing');
+  document.getElementById('sendBtn').disabled=true;
+  try{
+    const j=await postJSON('/api/chat/',{messages:history,lang:ARAL.lang});
+    t.classList.remove('typing'); t.textContent=j.answer+(j.fallback?'\n\n— {{ t.ai_offline|escapejs }}':'');
+    history.push({role:'assistant',content:j.answer});
+  }catch(e){t.classList.remove('typing'); t.textContent='{{ t.ai_error|escapejs }}'; history.pop();}
+  document.getElementById('sendBtn').disabled=false;
+}
+document.getElementById('chatform').onsubmit=e=>{e.preventDefault();const i=document.getElementById('q');ask(i.value);i.value='';};
+document.querySelectorAll('.ex').forEach(b=>b.onclick=()=>ask(b.textContent));
+</script>
+{% endblock %}

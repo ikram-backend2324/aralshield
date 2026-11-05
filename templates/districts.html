@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% load aral %}
+{% block title %}{{ t.nav_districts }} — AralShield{% endblock %}
+{% block content %}
+<section>
+  <div class="wrap">
+    <h1>{{ t.all_districts }}</h1>
+    {% if data.simulated %}<div class="banner sim">⚠ {{ t.data_sim }}</div>{% else %}<div class="banner live"><span class="livedot"></span>{{ t.data_live }}</div>{% endif %}
+    <div class="grid3">
+      {% for r in rows %}
+      <a class="card" href="/district/{{ r.slug }}/" style="color:inherit;text-decoration:none;border-left:5px solid {{ r.color }}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+          <h3 style="margin:0">{{ r.name }}</h3>
+          <span style="font-family:Unbounded;font-size:28px;font-weight:700;color:{{ r.color }}">{{ r.risk }}</span>
+        </div>
+        <span class="pill" style="background:{{ r.color }}">{{ r.level|lvl:t }}</span>
+        <div class="muted small" style="margin-top:10px">
+          PM10 {{ r.cur.pm10|num }} · {{ t.dust }} {{ r.cur.dust|num }} µg/m³ · {{ t.wind }} {{ r.cur.wind|num:1 }} m/s<br>
+          {{ t.peak72 }}: <b style="color:{{ r.peak.color }}">{{ r.peak.risk }}</b>
+          {% if r.cur.from_aralkum %}<br>🧂 {{ t.from_aralkum }}{% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

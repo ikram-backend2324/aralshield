@@ -1,0 +1,104 @@
+{% extends "base.html" %}{% load aral %}
+{% block head %}<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <span class="kicker">🏆 {{ t.hero_kicker }}</span>
+      <h1>{{ t.hero_title }}</h1>
+      <p class="lead">{{ t.hero_text }}</p>
+      <div class="cta">
+        <a class="btn pri" href="#map-section">🗺 {{ t.cta_map }}</a>
+        {% if not in_app %}<a class="btn sand" href="/download/">⬇ {{ t.cta_app }}</a>{% endif %}
+      </div>
+    </div>
+    {% with w=s.worst %}{% if w %}
+    <a class="gauge-card" href="/district/{{ w.slug }}/" style="display:block;color:inherit;text-decoration:none">
+      <div class="muted small" style="display:flex;align-items:center;gap:8px"><span class="livedot"></span>{{ t.worst_now }}</div>
+      <h2 style="margin:8px 0 0">{{ w.name }}</h2>
+      {% include "_gauge.html" with value=w.risk color=w.color %}
+      <div style="text-align:center"><span class="pill" style="background:{{ w.color }}">{{ w.level|lvl:t }}</span></div>
+      <div class="muted small" style="text-align:center;margin-top:10px">{{ t.risk_index }} · PM10 {{ w.cur.pm10|num }} µg/m³ · {{ t.wind }} {{ w.cur.wind|num:1 }} m/s</div>
+    </a>
+    {% endif %}{% endwith %}
+  </div>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>{{ s.n_total }}</b><span>{{ t.monitored }}</span></div>
+      <div class="stat"><b style="color:var(--high)">{{ s.n_high }}</b><span>{{ t.districts_high }}</span></div>
+      <div class="stat"><b>{{ s.people_high|thousands }}</b><span>{{ t.people_in_risk }}</span></div>
+      <div class="stat"><b>{{ s.max_peak }}</b><span>{{ t.peak72 }}</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="map-section">
+  <div class="wrap">
+    <h2>{{ t.map_title }}</h2>
+    <p class="muted">{{ t.map_hint }}</p>
+    {% if data.simulated %}<div class="banner sim">⚠ {{ t.data_sim }}</div>{% else %}<div class="banner live"><span class="livedot"></span>{{ t.data_live }}</div>{% endif %}
+    <div class="maplayout">
+      <div id="map"></div>
+      <div class="dlist">
+        {% for r in rows %}
+        <a class="drow" href="/district/{{ r.slug }}/">
+          <span class="dot" style="background:{{ r.color }}"></span>
+          <span class="nm">{{ r.name }}<br><span class="muted small">{{ r.level|lvl:t }}{% if r.cur.from_aralkum %} · {{ t.from_aralkum }}{% endif %}</span></span>
+          <span class="sc" style="color:{{ r.color }}">{{ r.risk }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--low)"></i>0–19 {{ t.lvl_low }}</span>
+      <span><i style="background:var(--moderate)"></i>20–39 {{ t.lvl_moderate }}</span>
+      <span><i style="background:var(--high)"></i>40–59 {{ t.lvl_high }}</span>
+      <span><i style="background:var(--very_high)"></i>60–79 {{ t.lvl_very_high }}</span>
+      <span><i style="background:var(--extreme)"></i>80+ {{ t.lvl_extreme }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <h2>{{ t.how_title }}</h2>
+    <div class="grid4">
+      <div class="card"><div class="n">1</div><h3>{{ t.how1_t }}</h3><p class="muted">{{ t.how1_d }}</p></div>
+      <div class="card"><div class="n">2</div><h3>{{ t.how2_t }}</h3><p class="muted">{{ t.how2_d }}</p></div>
+      <div class="card"><div class="n">3</div><h3>{{ t.how3_t }}</h3><p class="muted">{{ t.how3_d }}</p></div>
+      <div class="card"><div class="n">4</div><h3>{{ t.how4_t }}</h3><p class="muted">{{ t.how4_d }}</p></div>
+    </div>
+  </div>
+</section>
+
+{% if not in_app %}
+<section>
+  <div class="wrap">
+    <div class="card" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;background:linear-gradient(120deg,var(--card2),var(--card))">
+      <div style="font-size:54px">📱</div>
+      <div style="flex:1;min-width:240px"><h2 style="margin-bottom:6px">{{ t.app_promo_t }}</h2><p class="muted" style="margin:0">{{ t.app_promo_d }}</p></div>
+      <a class="btn sand" href="/download/">⬇ {{ t.cta_app }}</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const PTS = {{ map_json|safe }};
+const map = L.map('map',{scrollWheelZoom:false}).setView([42.75,59.9],7);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap, © CARTO',maxZoom:12}).addTo(map);
+// approximate former Aral Sea shoreline (1960) area near Moynaq — Aralkum
+L.polygon([[46.0,59.3],[45.6,61.0],[44.8,61.6],[44.0,61.2],[43.6,60.3],[43.75,59.0],[44.3,58.3],[45.2,58.4]],{color:'#e8d3a8',weight:1,dashArray:'4 6',fillColor:'#e8d3a8',fillOpacity:.08}).addTo(map).bindTooltip('Aralqum / Aralkum');
+const bounds=[];
+PTS.forEach(p=>{
+  const c=L.circleMarker([p.lat,p.lon],{radius:8+p.risk/6,color:p.color,weight:2,fillColor:p.color,fillOpacity:.45}).addTo(map);
+  c.bindPopup(`<b>${p.name}</b><br>{{ t.risk_short|escapejs }}: <b style="color:${p.color}">${p.risk}/100</b><br><a href="/district/${p.slug}/">{{ t.open|escapejs }} →</a>`);
+  c.bindTooltip(`${p.name}: ${p.risk}`,{direction:'top'});
+  bounds.push([p.lat,p.lon]);
+});
+if(bounds.length) map.fitBounds(bounds,{padding:[30,30]});
+</script>
+{% endblock %}

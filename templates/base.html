@@ -1,0 +1,55 @@
+{% load static %}<!doctype html>
+<html lang="{% if lang == 'qq' %}kaa{% else %}{{ lang }}{% endif %}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token }}">
+<meta name="theme-color" content="#07131c">
+<title>{% block title %}AralShield — {{ t.brand_tag }}{% endblock %}</title>
+<meta name="description" content="{{ t.brand_tag }}">
+<link rel="icon" href="{% static 'img/logo.svg' %}" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap&subset=latin-ext,cyrillic" rel="stylesheet">
+{% block head %}{% endblock %}
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/">
+      <img src="{% static 'img/logo.svg' %}" alt="" width="32" height="32"> AralShield
+    </a>
+    <button class="burger" aria-label="menu" onclick="document.querySelector('.nav').classList.toggle('open')">☰</button>
+    <nav class="nav">
+      <a href="/" class="{% if nav == 'home' %}on{% endif %}">{{ t.nav_home }}</a>
+      <a href="/districts/" class="{% if nav == 'districts' %}on{% endif %}">{{ t.nav_districts }}</a>
+      <a href="/assistant/" class="{% if nav == 'assistant' %}on{% endif %}">{{ t.nav_assistant }}</a>
+      <a href="/report/" class="{% if nav == 'report' %}on{% endif %}">{{ t.nav_report }}</a>
+      <a href="/dashboard/" class="{% if nav == 'dashboard' %}on{% endif %}">{{ t.nav_dashboard }}</a>
+      <a href="/about/" class="{% if nav == 'about' %}on{% endif %}">{{ t.nav_about }}</a>
+      {% if not in_app %}<a href="/download/" class="dl">⬇ {{ t.nav_download }}</a>{% endif %}
+      <div class="langs" aria-label="{{ t.lang }}">
+        {% for code, label in langs %}<a href="?lang={{ code }}" title="{{ label }}" class="{% if lang == code %}on{% endif %}">{{ code }}</a>{% endfor %}
+      </div>
+    </nav>
+  </div>
+</header>
+<main>{% block content %}{% endblock %}</main>
+<footer>
+  <div class="wrap">
+    <div>{{ t.footer }}</div>
+    <div style="margin-top:6px">{{ t.disclaimer }} · Data: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> / Copernicus CAMS · Map © OpenStreetMap, CARTO</div>
+  </div>
+</footer>
+<script>
+window.ARAL = {lang: "{{ lang }}", inApp: {{ in_app|yesno:"true,false" }}};
+function csrf(){return document.querySelector('meta[name=csrf-token]').content}
+async function postJSON(url, body){
+  const r = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','X-CSRFToken':csrf()},body:JSON.stringify(body)});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return r.json();
+}
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
