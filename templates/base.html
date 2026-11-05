@@ -43,6 +43,7 @@
 </footer>
 <script>
 window.ARAL = {lang: "{{ lang }}", inApp: {{ in_app|yesno:"true,false" }}};
+if(window.AralApp&&AralApp.setLang){try{AralApp.setLang(ARAL.lang)}catch(e){}}
 function csrf(){return document.querySelector('meta[name=csrf-token]').content}
 async function postJSON(url, body){
   const r = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','X-CSRFToken':csrf()},body:JSON.stringify(body)});

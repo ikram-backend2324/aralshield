@@ -9,7 +9,7 @@
       <p class="lead">{{ t.hero_text }}</p>
       <div class="cta">
         <a class="btn pri" href="#map-section">🗺 {{ t.cta_map }}</a>
-        {% if not in_app %}<a class="btn sand" href="/download/">⬇ {{ t.cta_app }}</a>{% endif %}
+        {% if not in_app %}<a class="btn sand" href="/download/">⬇ {{ t.cta_app }}</a>{% else %}<button class="btn sand" onclick="window.AralApp&&AralApp.chooseDistrict()">🔔 {{ t.app_choose }}</button>{% endif %}
       </div>
     </div>
     {% with w=s.worst %}{% if w %}

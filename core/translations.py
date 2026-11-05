@@ -183,6 +183,7 @@ T = {
     "recent_reports": {"qq": "Sońǵı xabarlar", "uz": "So'nggi xabarlar", "ru": "Последние сообщения", "en": "Latest reports"},
     "no_reports": {"qq": "Házirshe xabar joq.", "uz": "Hozircha xabar yo'q.", "ru": "Пока сообщений нет.", "en": "No reports yet."},
     "enable_alerts": {"qq": "Bul rayon ushın eskertiwdi qosıw", "uz": "Bu tuman uchun ogohlantirishni yoqish", "ru": "Включить оповещения для района", "en": "Enable alerts for this district"},
+    "app_choose": {"qq": "Eskertiw ushın rayon tańlaw", "uz": "Ogohlantirish uchun tuman tanlash", "ru": "Выбрать район для оповещений", "en": "Choose district for alerts"},
     "alerts_on": {"qq": "Eskertiw qosıldı ✓", "uz": "Ogohlantirish yoqildi ✓", "ru": "Оповещения включены ✓", "en": "Alerts enabled ✓"},
 
     # ---------- assistant
