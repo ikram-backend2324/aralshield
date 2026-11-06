@@ -82,3 +82,13 @@ class OpenMeteoParsing(TestCase):
             r = self.client.get("/history/?lang=qq")
         self.assertEqual(r.status_code, 200)
         self.assertContains(r, "jalǵanıw múmkin bolmadı")
+
+    def test_ensure_admin(self):
+        from django.contrib.auth import get_user_model
+        from django.core.management import call_command
+        call_command("ensure_admin")
+        u = get_user_model().objects.get(username="admin")
+        self.assertTrue(u.is_superuser and u.check_password("admin123"))
+        u.set_password("changed"); u.save()
+        call_command("ensure_admin")  # must not reset a changed password
+        self.assertTrue(get_user_model().objects.get(username="admin").check_password("changed"))
