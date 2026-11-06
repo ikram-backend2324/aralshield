@@ -173,3 +173,4 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
   .partrow{grid-template-columns:110px 1fr 36px}
   .hero{padding-top:36px}
 }
+.leaflet-tile.dark-tiles,.dark-tiles .leaflet-tile{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.6)}

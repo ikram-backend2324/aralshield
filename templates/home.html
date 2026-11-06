@@ -90,7 +90,7 @@
 <script>
 const PTS = {{ map_json|safe }};
 const map = L.map('map',{scrollWheelZoom:false}).setView([42.75,59.9],7);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap, © CARTO',maxZoom:12}).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:12,referrerPolicy:'strict-origin-when-cross-origin',className:'dark-tiles'}).addTo(map);
 // approximate former Aral Sea shoreline (1960) area near Moynaq — Aralkum
 L.polygon([[46.0,59.3],[45.6,61.0],[44.8,61.6],[44.0,61.2],[43.6,60.3],[43.75,59.0],[44.3,58.3],[45.2,58.4]],{color:'#e8d3a8',weight:1,dashArray:'4 6',fillColor:'#e8d3a8',fillOpacity:.08}).addTo(map).bindTooltip('Aralqum / Aralkum');
 const bounds=[];
