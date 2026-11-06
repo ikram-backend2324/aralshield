@@ -67,7 +67,7 @@ T = {
     "lvl_moderate": {"qq": "Orta", "uz": "O'rtacha", "ru": "Умеренный", "en": "Moderate"},
     "lvl_high": {"qq": "Joqarı", "uz": "Yuqori", "ru": "Высокий", "en": "High"},
     "lvl_very_high": {"qq": "Júdá joqarı", "uz": "Juda yuqori", "ru": "Очень высокий", "en": "Very high"},
-    "lvl_extreme": {"qq": "Tótenshe", "uz": "Favqulodda", "ru": "Экстремальный", "en": "Extreme"},
+    "lvl_extreme": {"qq": "Qáwipli", "uz": "Favqulodda", "ru": "Экстремальный", "en": "Extreme"},
     "pm10": {"qq": "PM10 bólekshe", "uz": "PM10 zarracha", "ru": "Частицы PM10", "en": "PM10 particles"},
     "pm25": {"qq": "PM2.5 bólekshe", "uz": "PM2.5 zarracha", "ru": "Частицы PM2.5", "en": "PM2.5 particles"},
     "dust": {"qq": "Shań", "uz": "Chang", "ru": "Пыль", "en": "Dust"},
@@ -240,7 +240,7 @@ T = {
     # ---------- dashboard
     "dash_title": {"qq": "Mákemeler ushın operativ panel", "uz": "Tashkilotlar uchun operativ panel", "ru": "Оперативная панель для ведомств", "en": "Operational dashboard for agencies"},
     "dash_sub": {
-        "qq": "Hákimiyatlar, mektepler, emlewxanalar hám TJM ushın: hár rayon boyınsha házirgi qáwip hám usınılatuǵın ilajlar.",
+        "qq": "Hákimiyatlar, mektepler, emlewxanalar hám Mámleketlik qáwipsizlik ministrligi ushın: hár rayon boyınsha házirgi qáwip hám usınılatuǵın ilajlar.",
         "uz": "Hokimliklar, maktablar, shifoxonalar va FVV uchun: har bir tuman bo'yicha joriy xavf va tavsiya etilgan choralar.",
         "ru": "Для хокимиятов, школ, больниц и МЧС: текущий риск по районам и рекомендуемые меры.",
         "en": "For local government, schools, clinics and emergency services: current risk by district and recommended actions.",
@@ -254,7 +254,7 @@ T = {
     "act_moderate": {"qq": "Sezimtal balalar ushın sırttaǵı sabaqlardı qısqartıw", "uz": "Sezgir bolalar uchun ochiq havodagi darslarni qisqartirish", "ru": "Сократить уличные занятия для чувствительных детей", "en": "Shorten outdoor lessons for sensitive children"},
     "act_high": {"qq": "Dene tárbiyası sabaqların imarat ishine kóshiriw, áynalardı jabıw", "uz": "Jismoniy tarbiyani ichkariga ko'chirish, derazalarni yopish", "ru": "Физкультуру — в зал, закрыть окна", "en": "Move PE indoors, keep windows closed"},
     "act_very_high": {"qq": "Sırttaǵı ilajlardı biykarlaw, maskalar, emlewxanalardı tayarlaw", "uz": "Ochiq havodagi tadbirlarni bekor qilish, niqoblar, shifoxonalarni tayyorlash", "ru": "Отменить уличные мероприятия, маски, подготовить поликлиники", "en": "Cancel outdoor events, masks, prepare clinics"},
-    "act_extreme": {"qq": "Tótenshe rejim: úyde qalıw, 103 hám TJM tayarlıǵı", "uz": "Favqulodda rejim: uyda qolish, 103 va FVV tayyorgarligi", "ru": "Режим ЧС: оставаться дома, готовность 103 и МЧС", "en": "Emergency regime: stay indoors, ambulance & rescue on standby"},
+    "act_extreme": {"qq": "Qáwipli dáreje: úyde qalıw, 103 hám Mámleketlik qáwipsizlik ministrligi tayarlıǵı", "uz": "Favqulodda rejim: uyda qolish, 103 va FVV tayyorgarligi", "ru": "Режим ЧС: оставаться дома, готовность 103 и МЧС", "en": "Emergency regime: stay indoors, ambulance & rescue on standby"},
     "api_note": {
         "qq": "Barlıq maǵlıwmat ashıq API arqalı da qoljetimli",
         "uz": "Barcha ma'lumotlar ochiq API orqali ham mavjud",
@@ -372,7 +372,7 @@ LEVEL_ADVICE = {
         "en": "Very high risk. Stay indoors if you can. Masks are a must outside. Seal gaps around doors and windows with damp cloth.",
     },
     "extreme": {
-        "qq": "Tótenshe jaǵday! Úyden shıqpań. Dem qısılsa yamasa kókirek awırsa, dárhal 103 ke qońıraw etiń.",
+        "qq": "Qáwipli jaǵday! Úyden shıqpań. Dem qısılsa yamasa kókirek awırsa, dárhal 103 ke qońıraw etiń.",
         "uz": "Favqulodda holat! Uydan chiqmang. Nafas qisilsa yoki ko'krak og'risa, darhol 103 ga qo'ng'iroq qiling.",
         "ru": "Чрезвычайная ситуация! Не выходите из дома. При одышке или боли в груди срочно звоните 103.",
         "en": "Emergency! Do not go outside. If you have shortness of breath or chest pain, call 103 immediately.",

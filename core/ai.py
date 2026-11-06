@@ -29,7 +29,7 @@ SYSTEM = (
 SCRIPT_RULES = {
     "qq": ("Write in modern Karakalpak Latin alphabet (letters á, ó, ú, ı, ń, ǵ), not Uzbek and not Kazakh; "
            "never use Uzbek spellings with o' or g'. Use these exact Karakalpak words: risk levels "
-           "'tómen', 'orta', 'joqarı', 'júdá joqarı', 'tótenshe' (never 'óte'); window = 'áyna' (áynalardı jabıń); "
+           "'tómen', 'orta', 'joqarı', 'júdá joqarı', 'qáwipli' (never 'óte', never 'tótenshe'); window = 'áyna' (áynalardı jabıń); "
            "health = 'densawlıq' (one word); go outside = 'sırtqa shıǵıw'; be outside = 'sırtta bolıw'; "
            "mask = 'maska' (maska taǵıń); doctor = 'shıpaker'; ambulance = 'tez járdem (103)'; cough = 'jótel'; "
            "chest = 'kókirek'; children = 'balalar'; greeting 'Assalawma áleykum'; hour = 'saat' (never 'saǵat'); "
