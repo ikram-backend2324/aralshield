@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
 
 from . import ai
-from .airdata import get_data, invalidate, level_for
+from .airdata import get_data, get_history, invalidate, level_for
 from .models import AdviceLog, CitizenReport, District
 from .translations import GROUPS, strings
 
@@ -151,6 +151,36 @@ def dashboard(request):
         r["action"] = t["act_" + r["level"]]
         r["peak_color"] = r["peak"].get("color", "#2fbf71")
     return render(request, "dashboard.html", {"data": data, "rows": rows, "s": _summary(rows), "nav": "dashboard"})
+
+
+def history(request):
+    h = get_history()
+    slug = request.GET.get("d", "moynaq")
+    d = District.objects.filter(slug=slug).first() or District.objects.get(slug="moynaq")
+    rows = h["districts"].get(d.slug, [])
+    worst = None
+    if h.get("worst"):
+        w = h["worst"]
+        wd = District.objects.filter(slug=w["slug"]).first()
+        worst = {**w, "name": wd.name(request.lang) if wd else w["slug"]}
+    chart = {"labels": [r["date"][5:] for r in rows], "risk": [r["max_risk"] for r in rows],
+             "pm10": [r["max_pm10"] for r in rows]}
+    verify = ("https://air-quality-api.open-meteo.com/v1/air-quality?latitude=%.4f&longitude=%.4f"
+              "&hourly=pm10,pm2_5,dust&past_days=30&forecast_days=1&timezone=Asia%%2FTashkent" % (d.lat, d.lon))
+    return render(request, "history.html", {
+        "h": h, "d": d, "name": d.name(request.lang), "rows": list(reversed(rows)), "worst": worst,
+        "chart_json": json.dumps(chart), "verify_url": verify, "all": District.objects.all(), "nav": "history",
+        "max_day": max(rows, key=lambda r: r["max_risk"]) if rows else None,
+    })
+
+
+@require_GET
+def api_history(request, slug):
+    h = get_history()
+    if slug not in h["districts"] and h["ok"]:
+        raise Http404
+    return _cors(JsonResponse({"district": slug, "source": "Open-Meteo / Copernicus CAMS (real past data)",
+                               "days": h["districts"].get(slug, []), "ok": h["ok"]}))
 
 
 def about(request):

@@ -1,0 +1,92 @@
+{% extends "base.html" %}{% load aral %}
+{% block title %}{{ t.nav_history }} — {{ name }} — AralSafe{% endblock %}
+{% block content %}
+<section>
+  <div class="wrap">
+    <h1>📅 {{ t.hist_title }}</h1>
+    <p class="muted" style="max-width:820px">{{ t.hist_lead }}</p>
+
+    <form method="get" class="histbar">
+      <label class="small muted" for="d">{{ t.hist_district }}</label>
+      <select id="d" name="d" onchange="this.form.submit()">
+        {% for x in all %}<option value="{{ x.slug }}" {% if x.slug == d.slug %}selected{% endif %}>{{ x|dname:lang }}</option>{% endfor %}
+      </select>
+      <noscript><button class="btn ghost">OK</button></noscript>
+    </form>
+
+    {% if not h.ok %}
+      <div class="banner sim" style="margin-top:18px">⚠ {{ t.hist_error }}</div>
+    {% else %}
+    <div class="grid3" style="margin-top:18px">
+      {% if worst %}
+      <div class="card">
+        <div class="small muted">{{ t.hist_worst }}</div>
+        <div style="font-family:Unbounded;font-size:34px;font-weight:700;color:{{ worst.color }}">{{ worst.max_risk }}</div>
+        <div><b>{{ worst.name }}</b> · {{ worst.date }}</div>
+        <span class="pill" style="background:{{ worst.color }};margin-top:6px">{{ worst.level|lvl:t }}</span>
+        <div class="small muted" style="margin-top:6px">PM10 {{ worst.max_pm10 }} µg/m³</div>
+      </div>
+      {% endif %}
+      {% if max_day %}
+      <div class="card">
+        <div class="small muted">{{ name }} · {{ t.col_max_risk }}</div>
+        <div style="font-family:Unbounded;font-size:34px;font-weight:700;color:{{ max_day.color }}">{{ max_day.max_risk }}</div>
+        <div>{{ max_day.date }} · {{ max_day.max_risk_time }}</div>
+        <div class="small muted" style="margin-top:6px">PM10 {{ max_day.max_pm10 }} µg/m³ · {{ t.col_wind|lower }} {{ max_day.max_wind }} m/s</div>
+      </div>
+      {% endif %}
+      <div class="card">
+        <div class="small muted">✅ {{ t.hist_verify }}</div>
+        <p class="small" style="margin:8px 0">{{ t.hist_verify_note }}</p>
+        <a class="btn ghost" href="{{ verify_url }}" target="_blank" rel="noopener">open-meteo.com ↗</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3>{{ t.hist_chart }} — {{ name }}</h3>
+      <canvas id="hchart" height="110"></canvas>
+    </div>
+
+    <div class="card scroll-x" style="margin-top:18px">
+      <table class="tbl">
+        <thead><tr><th>{{ t.col_date }}</th><th>{{ t.col_max_risk }}</th><th>{{ t.col_time }}</th><th>{{ t.col_max_pm10 }}</th><th>{{ t.col_avg_pm10 }}</th><th>{{ t.col_wind }}</th><th>{{ t.col_aralkum }}</th></tr></thead>
+        <tbody>
+        {% for r in rows %}
+          <tr>
+            <td>{{ r.date }}</td>
+            <td><b style="color:{{ r.color }}">{{ r.max_risk }}</b> <span class="pill" style="background:{{ r.color }}">{{ r.level|lvl:t }}</span></td>
+            <td>{{ r.max_risk_time }}</td>
+            <td>{{ r.max_pm10 }} <small class="muted">µg/m³</small></td>
+            <td>{{ r.avg_pm10 }} <small class="muted">µg/m³</small></td>
+            <td>{{ r.max_wind }} <small class="muted">m/s</small></td>
+            <td>{{ r.aralkum_hours }} {{ t.hours }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted" style="margin-top:12px">{{ t.hist_note }} · Open-Meteo / Copernicus CAMS · {{ h.fetched }}</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+{% if h.ok %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const H = {{ chart_json|safe }};
+const lc = v => v<20?'#2fbf71':v<40?'#e3c34a':v<60?'#f08a24':v<80?'#e04b3c':'#8e2bd6';
+new Chart(document.getElementById('hchart'),{
+  data:{labels:H.labels,datasets:[
+    {type:'bar',label:'ADRI (max)',data:H.risk,backgroundColor:H.risk.map(lc),yAxisID:'y',borderRadius:3},
+    {type:'line',label:'PM10 max µg/m³',data:H.pm10,borderColor:'#e8d3a8',pointRadius:2,tension:.3,yAxisID:'y2'}
+  ]},
+  options:{responsive:true,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:'#c6d5de'}}},
+    scales:{x:{ticks:{color:'#93a9b8',maxTicksLimit:15},grid:{color:'#1f3d55'}},
+      y:{min:0,max:100,ticks:{color:'#93a9b8'},grid:{color:'#1f3d55'},title:{display:true,text:'ADRI',color:'#93a9b8'}},
+      y2:{position:'right',min:0,ticks:{color:'#e8d3a8'},grid:{display:false}}}}
+});
+</script>
+{% endif %}
+{% endblock %}

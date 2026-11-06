@@ -50,3 +50,35 @@ class OpenMeteoParsing(TestCase):
         self.assertEqual(s, 0)
         s, salt, parts = airdata.compute_risk(1000, 500, 2000, 30, 0, 5, 10, 50)
         self.assertEqual(s, 100)
+
+    def test_history_page(self):
+        from django.core.cache import cache
+        cache.clear()
+        n = District.objects.count()
+        start = timezone.localtime().replace(hour=0, minute=0) - timezone.timedelta(days=3)
+        times = [(start + timezone.timedelta(hours=h)).strftime("%Y-%m-%dT%H:00") for h in range(96)]
+        pm = [40.0] * 96
+        pm[30] = 260.0  # a real-looking spike on day 2
+        air = [{"hourly": {"time": times, "pm10": pm, "pm2_5": [12.0] * 96, "dust": [30.0] * 96}} for _ in range(n)]
+        wx = [{"hourly": {"time": times, "wind_speed_10m": [9.0] * 96, "wind_direction_10m": [350] * 96,
+                          "relative_humidity_2m": [25] * 96}} for _ in range(n)]
+        with mock.patch("core.airdata.requests.get", side_effect=[fake_resp(air), fake_resp(wx)]):
+            h = airdata.get_history()
+        self.assertTrue(h["ok"])
+        rows = h["districts"]["moynaq"]
+        self.assertEqual(len(rows), 3)  # 3 past days, today excluded
+        self.assertEqual(max(r["max_pm10"] for r in rows), 260)
+        self.assertEqual(h["worst"]["slug"], "moynaq")
+        for lang in ("qq", "uz", "ru", "en"):
+            r = self.client.get(f"/history/?d=kungrad&lang={lang}")
+            self.assertEqual(r.status_code, 200)
+            self.assertContains(r, "open-meteo.com")
+        self.assertEqual(self.client.get("/api/history/moynaq/").json()["days"][0]["date"], rows[0]["date"])
+
+    def test_history_offline_is_honest(self):
+        from django.core.cache import cache
+        cache.clear()
+        with mock.patch("core.airdata.requests.get", side_effect=OSError("offline")):
+            r = self.client.get("/history/?lang=qq")
+        self.assertEqual(r.status_code, 200)
+        self.assertContains(r, "jalǵanıw múmkin bolmadı")

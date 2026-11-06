@@ -37,3 +37,8 @@ def pct(v, maxv=100):
         return max(0, min(100, float(v) / float(maxv) * 100))
     except (TypeError, ValueError, ZeroDivisionError):
         return 0
+
+
+@register.filter
+def dname(d, lang):
+    return d.name(lang)

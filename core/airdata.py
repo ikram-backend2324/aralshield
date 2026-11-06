@@ -260,3 +260,94 @@ def get_data(force=False, demo=False):
 def invalidate():
     cache.delete(CACHE_KEY)
     cache.delete(CACHE_KEY + "_demo")
+
+
+# ---------------------------------------------------------------- history (real past data)
+
+HISTORY_DAYS = 30
+HISTORY_KEY = "aral_history_v1"
+
+
+def _fetch_history(districts, days=HISTORY_DAYS):
+    """Real past hourly data from Open-Meteo (Copernicus CAMS) for the last `days` days."""
+    lats = ",".join(f"{d.lat:.4f}" for d in districts)
+    lons = ",".join(f"{d.lon:.4f}" for d in districts)
+    common = {"latitude": lats, "longitude": lons, "timezone": "Asia/Tashkent",
+              "past_days": days, "forecast_days": 1}
+    air = requests.get(AIR_URL, params={**common, "hourly": "pm10,pm2_5,dust"}, timeout=20)
+    air.raise_for_status()
+    wx = requests.get(WX_URL, params={**common, "hourly": "wind_speed_10m,wind_direction_10m,relative_humidity_2m",
+                                      "wind_speed_unit": "ms"}, timeout=20)
+    wx.raise_for_status()
+    air_j, wx_j = air.json(), wx.json()
+    if isinstance(air_j, dict):
+        air_j = [air_j]
+    if isinstance(wx_j, dict):
+        wx_j = [wx_j]
+    if len(air_j) != len(districts) or len(wx_j) != len(districts):
+        raise ValueError("unexpected Open-Meteo response length")
+    return air_j, wx_j
+
+
+def _pick(src, key, idx):
+    arr = src.get(key) or []
+    return arr[idx] if idx is not None and idx < len(arr) else None
+
+
+def get_history():
+    """Daily summary per district for the last HISTORY_DAYS days (today excluded: it is not over yet).
+    Returns {"days": [...dates...], "districts": {slug: [{date, max_risk, max_pm10, avg_pm10, max_wind,
+    aralkum_hours, color, level}]}, "worst": {...}, "ok": bool}. Cached for 1 hour."""
+    cached = cache.get(HISTORY_KEY)
+    if cached:
+        return cached
+    districts = list(District.objects.all())
+    today = timezone.localtime().strftime("%Y-%m-%d")
+    try:
+        air_j, wx_j = _fetch_history(districts)
+    except Exception as e:  # network problem: say so honestly, no invented numbers
+        log.warning("history fetch failed: %s", e)
+        return {"ok": False, "days": [], "districts": {}, "worst": None}
+    out, worst = {}, None
+    for d, a, w in zip(districts, air_j, wx_j):
+        ah, wh = a.get("hourly", {}), w.get("hourly", {})
+        widx = {t: i for i, t in enumerate(wh.get("time", []))}
+        per_day = {}
+        for i, t in enumerate(ah.get("time", [])):
+            day = t[:10]
+            if day >= today:
+                continue
+            j = widx.get(t)
+            pm10, pm25, dust = _pick(ah, "pm10", i), _pick(ah, "pm2_5", i), _pick(ah, "dust", i)
+            wind, wdir, rh = _pick(wh, "wind_speed_10m", j), _pick(wh, "wind_direction_10m", j), _pick(wh, "relative_humidity_2m", j)
+            if pm10 is None:
+                continue
+            risk, salt, _ = compute_risk(pm10, pm25, dust, wind, wdir, rh, d.distance_to_aralkum_km)
+            r = per_day.setdefault(day, {"date": day, "max_risk": 0, "max_risk_time": "", "max_pm10": 0, "sum_pm10": 0, "n": 0,
+                                         "max_wind": 0, "aralkum_hours": 0})
+            if risk > r["max_risk"]:
+                r["max_risk"], r["max_risk_time"] = risk, t[11:16]
+            r["max_pm10"] = max(r["max_pm10"], pm10)
+            r["sum_pm10"] += pm10
+            r["n"] += 1
+            r["max_wind"] = max(r["max_wind"], wind or 0)
+            if from_aralkum(wdir) and (wind or 0) >= 4:
+                r["aralkum_hours"] += 1
+        rows = []
+        for day in sorted(per_day):
+            r = per_day[day]
+            level, color = level_for(r["max_risk"])
+            rows.append({"date": day, "max_risk": r["max_risk"], "max_risk_time": r["max_risk_time"],
+                         "max_pm10": round(r["max_pm10"]), "avg_pm10": round(r["sum_pm10"] / max(r["n"], 1)),
+                         "max_wind": round(r["max_wind"], 1), "aralkum_hours": r["aralkum_hours"],
+                         "level": level, "color": color})
+            if worst is None or r["max_risk"] > worst["max_risk"]:
+                worst = {"slug": d.slug, "date": day, "max_risk": r["max_risk"], "max_pm10": round(r["max_pm10"]),
+                         "level": level, "color": color}
+        out[d.slug] = rows
+    days = sorted({r["date"] for rows in out.values() for r in rows})
+    data = {"ok": bool(days), "days": days, "districts": out, "worst": worst,
+            "fetched": timezone.localtime().strftime("%Y-%m-%d %H:%M")}
+    if data["ok"]:
+        cache.set(HISTORY_KEY, data, 3600)
+    return data
