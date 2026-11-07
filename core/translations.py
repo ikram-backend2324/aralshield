@@ -276,7 +276,7 @@ T = {
     "col_district": {"qq": "Rayon", "uz": "Tuman", "ru": "Район", "en": "District"},
     "col_level": {"qq": "Dárejesi", "uz": "Darajasi", "ru": "Уровень", "en": "Level"},
     "col_peak": {"qq": "72 saat piki", "uz": "72 soat cho'qqisi", "ru": "Пик 72 ч", "en": "72 h peak"},
-    "col_reports": {"qq": "Xabarlar (24s)", "uz": "Xabarlar (24s)", "ru": "Сообщ. (24ч)", "en": "Reports (24h)"},
+    "col_reports": {"qq": "Xabarlar (24 saat)", "uz": "Xabarlar (24 soat)", "ru": "Сообщ. (24ч)", "en": "Reports (24h)"},
     "col_action": {"qq": "Mektep hám emlewxana ushın ilaj", "uz": "Maktab va shifoxona uchun chora", "ru": "Меры для школ и больниц", "en": "Action for schools & clinics"},
     "act_low": {"qq": "Ádettegi rejim", "uz": "Odatiy rejim", "ru": "Обычный режим", "en": "Normal regime"},
     "act_moderate": {"qq": "Sezimtal balalar ushın sırttaǵı sabaqlardı qısqartıw", "uz": "Sezgir bolalar uchun ochiq havodagi darslarni qisqartirish", "ru": "Сократить уличные занятия для чувствительных детей", "en": "Shorten outdoor lessons for sensitive children"},
@@ -354,8 +354,8 @@ T = {
     "dl_step1": {"qq": "Joqarıdaǵı túyme arqalı APK faylın júkleń.", "uz": "Yuqoridagi tugma orqali APK faylini yuklang.", "ru": "Скачайте APK кнопкой выше.", "en": "Download the APK with the button above."},
     "dl_step2": {"qq": "Faylǵa basıń. Soralsa, «Belgisiz derekten ornatıwǵa» ruqsat beriń.", "uz": "Faylni bosing. So'ralsa, «Noma'lum manbalardan o'rnatish»ga ruxsat bering.", "ru": "Откройте файл. Если попросит — разрешите «Установку из неизвестных источников».", "en": "Open the file. If asked, allow “Install unknown apps”."},
     "dl_step3": {"qq": "Qosımshanı ashıp, rayonıńızdı tańlań hám bildiriwlerge ruqsat beriń.", "uz": "Ilovani ochib, tumaningizni tanlang va bildirishnomalarga ruxsat bering.", "ru": "Откройте приложение, выберите район и разрешите уведомления.", "en": "Open the app, pick your district and allow notifications."},
-    "dl_qr": {"qq": "Telefon kamerası menen skanerlań", "uz": "Telefon kamerasi bilan skanerlang", "ru": "Отсканируйте камерой телефона", "en": "Scan with your phone camera"},
-    "dl_req": {"qq": "Talap: Android 8.0 hám joqarı · 1 MB-tan kem", "uz": "Talab: Android 8.0 va yuqori · 1 MB dan kam", "ru": "Требуется Android 8.0+ · меньше 1 МБ", "en": "Requires Android 8.0+ · under 1 MB"},
+    "dl_qr": {"qq": "Telefon kamerası menen skanerleń", "uz": "Telefon kamerasi bilan skanerlang", "ru": "Отсканируйте камерой телефона", "en": "Scan with your phone camera"},
+    "dl_req": {"qq": "Talap: Android 8.0 hám joqarı · kólemi 1 MB den kem", "uz": "Talab: Android 8.0 va yuqori · 1 MB dan kam", "ru": "Требуется Android 8.0+ · меньше 1 МБ", "en": "Requires Android 8.0+ · under 1 MB"},
     "dl_missing": {"qq": "APK házirshe júklenbegen — tez arada.", "uz": "APK hozircha yuklanmagan — tez orada.", "ru": "APK ещё не загружен — скоро.", "en": "APK not uploaded yet — coming soon."},
 
     # ---------- footer

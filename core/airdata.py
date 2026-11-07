@@ -177,7 +177,7 @@ def _report_boosts():
     since = timezone.now() - timedelta(hours=3)
     boosts = {}
     for r in CitizenReport.objects.filter(created_at__gte=since).select_related("district"):
-        boosts[r.district.slug] = boosts.get(r.district.slug, 0) + max(0, r.severity - 2) * 1.5
+        boosts[r.district.slug] = boosts.get(r.district.slug, 0) + r.severity * 1.0  # 1..5 points each, max 10 in total
     return boosts
 
 
